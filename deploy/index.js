@@ -1,11 +1,15 @@
-const http = require('http');
-const hostname = '0.0.0.0';
-const port = 7500;
-const server = http.createServer((req, res) => { 
-res.statusCode = 200;
-res.setHeader('Content-Type', 'text/plain');
-res.end('Hello World\n');
-}); 
-server.listen(port, hostname, () => { 
-console.log(`Server running at http://${hostname}:${port}/`);
-});
+var express = require('express');
+var app = express();
+
+app.get('/', function(req, res) {
+    res.send('Hello World');
+})
+
+var server = app.listen(8081, function() {
+
+    var host = server.address().address
+    var port = server.address().port
+
+    console.log("应用实例，访问地址为 http://%s:%s", host, port)
+
+})
