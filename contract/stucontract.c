@@ -12,7 +12,8 @@ KEY array(CfInfoHash) cfData;   //证书表
 
 KEY mapping(string,uint64)cfData_r; //证书反映射表string1InfoHash       uint64 ID
 
-KEY string SchoolName,SchoolPK;
+KEY string var1;
+//KEY string SchoolName,SchoolPK;
 
 KEY mapping(string,string) ScPkMap;   //学校权限表string1 schoolname    string2 schoolpk
 
@@ -49,29 +50,79 @@ bool SchoolConfirm(string Schoolname,string ScPk){
 
 //管理员验证
 bool AdminConfirm(address SenderPk){
-    if (SenderPk==AdminPk)
+    if (Equal(SenderPk,AdminPk))
     {
         return true;
     }
     return false;
-    cfData.value.Infohash
+
 }
 
 //证书是否存在
 uint64 CertificateExist(string InfoH){
     cfData_r.key=InfoH;
     cfData.index=cfData_r.value;
-    if(cfData.value.Infohash==InfoH)
+    if(Equal(cfData.value.Infohash,InfoH))
     {
         return cfData_r.value;
     }
     return -1;
 }
 
+//学校是否存在
+bool SchoolExist(string schoolIn){
+    ScPkMap.key=schoolIn;
+    if (Equal(ScPkMap.value,var1))
+    {
+        return false;
+    }
+    return true;
+}
 
-// 系统的全部用户
-KEY uint64 stucounts;
-KEY array(string) useraddresses; // 系统的全部用户, 可以通过用户地址获取ipfshash与filehash
+
+//学校注册
+bool SchoolRegister(string SchoolIn,string SchoolPk){
+    if(AdminConfirm(GetSender())){
+        if (SchoolExist(SchoolIn))
+        {
+            ScPkMap.key=SchoolIn;
+            ScPkMap.value=SchoolPk;
+            return true;
+        }       
+    }
+    return false;
+}
+
+//证书注册
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//证书撤销
+
+
+
+
+
+
+
+
+
+
+
 
 // 部署合约的地址
 KEY address owner;
