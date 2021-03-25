@@ -1,7 +1,7 @@
 apps:
-  - script: ./index.js
+  - script: ./admin.js
     name: test
     env_production:
       NODE_ENV: production
       HOST: localhost
-      PORT: 8081
+      PORT: 8082
