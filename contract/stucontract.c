@@ -1,11 +1,10 @@
 #include "vntlib.h"
-#include <string.h>
 // 每个学生信息的结构体
 typedef struct
 {
     string Infohash;        
-    string Static;    
-    string Date;     
+    string State;    
+    uint64 Date;     
 } CfInfoHash;
 
 KEY array(CfInfoHash) cfData;   //证书表
@@ -13,7 +12,7 @@ KEY array(CfInfoHash) cfData;   //证书表
 KEY mapping(string,uint64)cfData_r; //证书反映射表string1InfoHash       uint64 ID
 
 KEY string var1;
-//KEY string SchoolName,SchoolPK;
+KEY string var0="ERROR",var2="REMOKE",var3="PASS",var4="SUCCESS";
 
 KEY mapping(string,string) ScPkMap;   //学校权限表string1 schoolname    string2 schoolpk
 
@@ -21,13 +20,15 @@ KEY int32   cfSize=0;   //证书数量
 
 KEY const address AdminPk;  //公司权限
 
+// 部署合约的地址
+KEY address owner;
 
 //证书验证
 bool CerticateVerification(uint64 ID,string infohash){
     cfData.index=ID;
     if (Equal(infohash,cfData.value.Infohash)==0)
     {
-       if (Equal("PASS",cfData.value.Static)==0)
+       if (Equal("PASS",cfData.value.State)==0)
        {
            return true;
        }
@@ -36,7 +37,6 @@ bool CerticateVerification(uint64 ID,string infohash){
     return false;
 
 }
-
 
 //学校确认
 bool SchoolConfirm(string Schoolname,string ScPk){
@@ -79,7 +79,6 @@ bool SchoolExist(string schoolIn){
     return true;
 }
 
-
 //学校注册
 bool SchoolRegister(string SchoolIn,string SchoolPk){
     if(AdminConfirm(GetSender())){
@@ -94,138 +93,57 @@ bool SchoolRegister(string SchoolIn,string SchoolPk){
 }
 
 //证书注册
+MUTABLE
+string RegisterFunc(string scname,string infohash){
 
+    // 获取执行该方法交易的用户地址
+    address sender = GetSender();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    string scpk;
+    uint64 Date=GetTimestamp();
+    ScPkMap.key=scname;
+    scpk=ScPkMap.value;
+    if(SchoolConfirm(scname,scpk)){
+        uint64 id=CertificateExist(infohash);
+        if (id==-1)
+        {
+            id=cfSize;cfSize++;
+        }
+        else {
+            cfData.index=id;
+            if(cfData.value.State==var3) return Concat(var3,FromU64(id));//已存在
+            else if (Date<cfData.value.Date) return Concat(var2,FromU64(id));//冻结
+            {cfData.value.State=var3;cfData.value.Date=Date;return Concat(var4,FromU64(id));//注册成功
+            }
+        }
+        cfData.index=id;
+        cfData.value.Infohash=infohash;
+        cfData.value.State=var3;
+        cfData.value.Date=Date;
+        cfData_r.value=id;
+        return Concat(var4,FromU64(id));//注册成功
+    }
+    return Concat(var0," SN");//学校登录失败
+}
 
 //证书撤销
-
-
-
-
-
-
-
-
-
-
-
-
-// 部署合约的地址
-KEY address owner;
+void RemokeFunc(string schoolname,uint64 id,string infohash,uint64 date){
+    string scpk;
+    ScPkMap.key=schoolname;
+    scpk=ScPkMap.value;
+    if(SchoolConfirm(schoolname,scpk)){
+        cfData.index=id;
+        if(Equal(cfData.value.Infohash,infohash)){
+            cfData.value.State=var2;
+            cfData.value.Date=date;
+            return true;
+        }
+    }
+    return false;
+}
 
 // 构造函数
 constructor $stucontract()
 {
     owner = GetSender();
 }
-
-// 存储数据
-MUTABLE
-void PutStore(string useraddr, string name, string gender, string snum, string IDnum, string department, string academy, string major,string grade,string timestamp)
-{
-    // 获取执行该方法交易的用户地址
-    address sender = GetSender();
-    
-    //存储数据
-    User_Edu_doc.key = sender;
-
-    User_Edu_doc.value.IDnum.index = User_Edu_doc.value.nowlength;        
-    User_Edu_doc.value.IDnum.value.name = name;
-    User_Edu_doc.value.IDnum.value.gender = gender;
-    User_Edu_doc.value.IDnum.value.snum = snum;
-    User_Edu_doc.value.IDnum.value.IDnum = IDnum;
-    User_Edu_doc.value.IDnum.value.department = department;
-    User_Edu_doc.value.IDnum.value.academy = academy;
-    User_Edu_doc.value.IDnum.value.major = major;
-    User_Edu_doc.value.IDnum.value.grade=grade;
-    User_Edu_doc.value.IDnum.value.timestamp=timestamp;
-	User_Edu_doc.value.nowlength = User_Edu_doc.value.nowlength + 1;
-      
-
-    // 存储系统用户
-    if(usercounts == 0){
-	useraddresses.length = 100;
-	useraddresses.index = usercounts;
-	useraddresses.value = useraddr;
-	usercounts = usercounts + 1;
-    }else{
-	useraddresses.index = usercounts;
-	useraddresses.value = useraddr;
-	usercounts = usercounts + 1;
-    }
-}
-
-// 查询单个学生的信息
-UNMUTABLE
-string GetStuEduInfo()
-{
-    string name = "";
-    string gender = "";
-//  string snum= "";     学号
-    string IDnum ="";
-    string department="";
-    string academy="";
-    string major="";
-    string grade="";
-    string timestamp = "";
-
-    
-    string result = "";
-
-    User_Edu_doc.key = GetSender();
-    uint64 nowlength = User_Edu_doc.value.nowlength;
-
-	User_Edu_doc.value.IDnum.index = IDnum;
-	name = User_Edu_doc.value.IDnum.value.name;
-	gender = User_Edu_doc.value.IDnum.value.gender;
-    //snum=User_Edu_doc.value.IDnum.value.snum;         学号似乎无用
-    IDnum=User_Edu_doc.value.IDnum.value.IDnum;
-    department=User_Edu_doc.value.IDnum.value.department;
-    academy=User_Edu_doc.value.IDnum.value.academy;
-    major=User_Edu_doc.value.IDnum.value.major;
-    grade=User_Edu_doc.value.IDnum.value.grade;
-	timestamp = User_Edu_doc.value.IDnum.value.timestamp;
-
-	result = Concat(Concat(Concat(Concat(Concat(Concat(Concat(Concat(Concat(Concat(Concat(Concat(Concat(Concat(result, name), "|"), gender), "|"),IDnum), "|"), department), "|"),academy), "|"), major), "|"), grade), "-");
-//待改
-
-    // 拼接成字符串
-    PrintStr("The stu's edu_doc: ", result);
-
-
-    //转换为json（待完善
-    
-
-
-
-
-    return result;
-}
-
-/*
-// 返回所有的用户
-UNMUTABLE
-string Getalluser()
-{
-	string result = "";
-	for(uint64 i=0; i<usercounts; i++){
-		useraddresses.index = i;
-		result = Concat(Concat(result, useraddresses.value), "|");
-	}
-	return	result;
-}
-*/
