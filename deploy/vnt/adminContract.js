@@ -1,7 +1,11 @@
-var Vnt = require("vnt");
+var vnt = require("vnt");
 var fs = require("fs");
 
-vnt.setProvider(new vnt.providers.HttpProvider("http://192.168.0.110:8805"));
+if (!vnt.currentProvider)
+    vnt.setProvider(new vnt.providers.HttpProvider("http://192.168.0.110:8805"));
+// vnt.setProvider(new vnt.providers.HttpProvider("http://47.111.100.232:8880"));
+
+var contractAddr = "0xasdfasdfasdfasdf";
 
 // 声明账户地址和密码
 // from1填写adminer的账号
@@ -48,32 +52,34 @@ function deployWasmContract() {
 }
 
 // 该方法会每隔一秒查询一下tx的信息，直到返回一个结果，并会调用回调函数
-function getTransactionReceipt(tx, cb) {
+function getTransactionReceipt(tx) {
     var receipt = vnt.core.getTransactionReceipt(tx)
     if (!receipt) {
         setTimeout(function() {
-            getTransactionReceipt(tx, cb)
+            getTransactionReceipt(tx)
         }, 1000);
     } else {
-        cb(receipt)
+        return receipt;
     }
 }
 
-function AddSchool(from, to, amount) {
+function AddSchool(schoolIn, schoolPk) {
     // 生成合约实例
     var contract = vnt.core.contract(abi).at(contractAddr)
 
-    // 调用合约的transfer方法进行转账，注意用到了sendTransaction
     contract.transfer.sendTransaction(
-        to, amount, { from: from },
+        schoolIn, schoolPk, { from: vnt.core },
         function(err, txid) {
             if (err) {
                 console.log("error happend: ", err)
+                return false;
             } else {
-                var receipt = getTransactionReceipt(txid, function(receipt) {
-                    console.log("status: ", receipt.status)
-                    GetAmount(to)
-                })
+                var receipt = getTransactionReceipt(txid)
+                    // 测试数据返回类型
+                console.log("tx receipt: ", receipt)
+                console.log("tx status: ", receipt.status)
+                console.log("contract address: ", receipt.contractAddress)
+                return receipt
             }
         })
 }
