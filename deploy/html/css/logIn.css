@@ -83,7 +83,7 @@
     background-color: rgb(241, 243, 246);
     box-shadow: inset 0px 6px 12px 0px rgba(55, 84, 170, 0.2),inset -4.243px -4.243px 12px 0px rgba(255, 255, 255, 0.004);
     border-radius: 20px;
-    width: 300px;
+    width: 350px;
     
   }
   
@@ -117,7 +117,7 @@
 
  
 
-  #addSuccess>p{
+  #logInSuccess>p{
     font-size: 25px;
     font-family: "Microsoft YaHei";
     color: rgb(104, 141, 98);

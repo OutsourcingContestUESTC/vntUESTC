@@ -1,0 +1,96 @@
+<style>
+    #loading {
+    width: 20px;
+    height: 20px;
+    }
+     
+    #img {
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #abcdef;
+    opacity: .5;
+    }
+</style>
+    
+   <body>
+    <!--multiple可以选择多个文件 -->
+    <input type="file" multiple name="" id="ipt" multiple>
+    <button id="btn" type="submit">上传文件</button>
+    <img id="loading" src="../img/loading.gif" alt="" style="display: none;">
+    <!-- bootstrap中引入条件 -->
+    <div class="progress" style="margin-top: 10px;width: 100px;margin-left: 10px;">
+    <div id="progress" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+    0%
+    </div>
+    </div>
+    <!-- 显示上传到服务器的图片 -->
+    <img src="" alt="" id="img" style="display: none;">
+    <script src="../lib/jquery-1.11.0.min.js"></script>
+    <script>
+    $(function() {
+    $('#btn').on('click', function() {
+    // 获取文件列表
+    var file = $('#ipt')[0].files
+     // 判断是否选择了文件
+    if (file.length <= 0) {
+     return alert('请上传文件')
+    }
+    // 创建formdata
+    var fd = new FormData()
+     // 向formdata中传入数据
+     // fd.append()
+     // file是一个伪数组
+    fd.append('avatar', file[0])
+     // 用ajax传送数据
+    $.ajax({
+     type: 'post',
+     url: 'http://www.liulongbin.top:3006/api/upload/avatar',
+     // 数据不需要编码
+     contentType: false,
+     // 数据对象不需要转换成键值对格式
+     processData: false,
+     data: fd,
+     beforeSend: function() {
+     $('#loading').show()
+     },
+     complete: function() {
+     $('#loading').hide()
+     },
+     success: function(res) {
+     // 判断是否接收成功
+     if (res.status !== 200) {
+     return alert(reg.msg)
+     }
+     $('#img').attr('src', 'http://www.liulongbin.top:3006' + res['url']).css('display', 'block')
+    
+     },
+     xhr: function xhr() {
+     var xhr = new XMLHttpRequest()
+     // 获取文件上传的进度
+     xhr.upload.onprogress = function(e) {
+     // e.lengthComputable表示当前的进度是否是可以计算,返回布尔值
+     if (e.lengthComputable) {
+      // e.loaded表示下载了多少数据, e.total表示数据总量
+      var percentComplete = Math.ceil((e.loaded / e.total) * 100)
+      // 让进度条的宽度变化
+      $('#progress').css('width', percentComplete)
+      // 在进度条中显示百分比
+      $('#progress').html(percentComplete + 'px')
+     }
+     }
+     // 文件加载完成
+     xhr.upload.onload = function() {
+     $('#progress').removeClass('progress-bar progress-bar-striped').addClass('progress-bar progress-bar-success')
+     }
+     return xhr
+     }
+    
+    })
+    
+    })
+    
+    })
+    </script>
+   </body>

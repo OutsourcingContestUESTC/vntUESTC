@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>证书上传</title>
+    <meta name="description" content="基于区块链的学位学历认证管理系统">
+    <meta name="keywords" content="区块链 学位学历认证 文特链 证书上传">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    
+    <link rel="stylesheet" href="../html/css/normalize.css">
+    <link rel="stylesheet" href="../html/css/certificateQuery.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="roundRactangle1">
+            <div class="formTitle">
+                证书查询
+
+            </div>
+            <input type="file" multiple name="" id="ipt" multiple>
+            <button id="Submit"><p>上传</p></button>
+            <div id="logInSuccess">
+               
+                <div class="roundRactangle2">
+                    <p id="beforeUploding"  >请上传证书文件</p>
+                    <p id="succeedUploding" style="color: rgb(104, 141, 98);margin-left: 170px;display: none;">上传成功</p>
+                    <p id="failUploding" style="color: red;display: none;">上传失败，请重试</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/banner.js"></script>
+    <script src="js/jquery.js"></script>
+    <!-- 从服务器获得数据 -->
+    <!-- <script>
+        $.ajax({
+            url:"",
+            dataType:"json",
+            async:true,
+            caches:true,
+            data:{
+                //后端输入
+            },
+            type:"POST",
+            beforeSend:function(){},
+            success:function(){
+
+            },
+            complete:function(){
+
+            },
+            error :function(){
+
+            }
+        })
+    
+    </script> -->
+    <!-- 上传文件 -->
+    <script>
+    $(function() {
+    $('#Submit').on('click', function() {
+    // 获取文件列表
+    var file = $('#ipt')[0].files
+     // 判断是否选择了文件
+    if (file.length <= 0) {
+     return alert('请上传文件')
+    }
+    // 创建formdata
+    var fd = new FormData()
+     // 向formdata中传入数据
+     // fd.append()
+     // file是一个伪数组
+    fd.append('avatar', file[0])
+     // 用ajax传送数据
+    $.ajax({
+     type: 'post',
+     url: 'xxxx/api/upload/avatar',//上传数据目标网址
+     // 数据不需要编码
+     contentType: false,
+     // 数据对象不需要转换成键值对格式
+     processData: false,
+     data: fd,
+     beforeSend: function() {
+     $('#beforeUploding').show()
+     },
+     complete: function() {
+     $('#beforeUploding').hide()
+     },
+     success: function(res) {
+     // 判断是否接收成功
+     if (res.status !== 200) {
+     return alert(reg.msg)
+     }
+     $('#beforeUploding').hide()
+     $('#succeedUploding').show()
+     },
+    
+     error: function(msg) {
+        $('#beforeUploding').hide()
+        $('#failUploding').show()
+    }
+    
+    })
+    
+    })
+    
+    })
+    </script>
+</body>
+
+</html>

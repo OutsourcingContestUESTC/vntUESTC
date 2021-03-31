@@ -1,4 +1,6 @@
-.container {
+
+
+  .container {
     position: relative;
     background-image: url("../images/图层1.png");
     width: 1366px;
@@ -26,38 +28,6 @@
     z-index: 3;
   }
 
-  .formTitle {
-    position: relative;
-    font-size: 50px;
-    font-family: "Microsoft YaHei";
-    color: rgb(117, 117, 117);
-    font-weight: bold;
-    line-height: 1.2;
-    text-align: center;
-    text-shadow: 0px 2px 4px rgba(54, 84, 170, 0.31),-1.414px -1.414px 4px rgba(255, 255, 255, 0.004);
-    -moz-transform: matrix( 0.49415206704218,0,0,0.49415205967874,0,0);
-    -webkit-transform: matrix( 0.49415206704218,0,0,0.49415205967874,0,0);
-    -ms-transform: matrix( 0.49415206704218,0,0,0.49415205967874,0,0);
-    
-    z-index: 6;
-  }
-
-  .roundRactangle2 {
-    position: relative;
-    
-    background-color: rgb(241, 243, 246);
-    box-shadow: inset 0px 6px 12px 0px rgba(55, 84, 170, 0.2),inset -4.243px -4.243px 12px 0px rgba(255, 255, 255, 0.004);
-    margin-top: 30px;
-    margin-bottom: 7px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 20px;
-    width: 446px;
-    height: 39px;
-    z-index: 4;
-  }
-
-
   .roundRactangle1  p{
     display: inline;
     font-size: 25px;
@@ -76,6 +46,22 @@
     margin-left: 19px;
     z-index: 9;
   }
+  
+  .formTitle {
+    position: relative;
+    font-size: 50px;
+    font-family: "Microsoft YaHei";
+    color: rgb(117, 117, 117);
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    text-shadow: 0px 2px 4px rgba(54, 84, 170, 0.31),-1.414px -1.414px 4px rgba(255, 255, 255, 0.004);
+    -moz-transform: matrix( 0.49415206704218,0,0,0.49415205967874,0,0);
+    -webkit-transform: matrix( 0.49415206704218,0,0,0.49415205967874,0,0);
+    -ms-transform: matrix( 0.49415206704218,0,0,0.49415205967874,0,0);
+    
+    z-index: 6;
+  }
 
   input{
     height: 39px;
@@ -83,9 +69,33 @@
     background-color: rgb(241, 243, 246);
     box-shadow: inset 0px 6px 12px 0px rgba(55, 84, 170, 0.2),inset -4.243px -4.243px 12px 0px rgba(255, 255, 255, 0.004);
     border-radius: 20px;
-    width: 300px;
+    width: 446px;
+    margin-left: 50px;
+    margin-top: 20px;
     
+    
+
   }
+  .roundRactangle2 {
+    position: relative;
+    background-color: rgb(241, 243, 246);
+    box-shadow: inset 0px 6px 12px 0px rgba(55, 84, 170, 0.2),inset -4.243px -4.243px 12px 0px rgba(255, 255, 255, 0.004);
+    margin-top: 52px;
+    margin-bottom: 7px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    width: 446px;
+    height: 39px;
+    z-index: 4;
+  }
+
+  .roundRactangle2>p{
+    
+      margin-left: 130px; 
+  }
+
+
   
 
   #Submit {
@@ -93,11 +103,12 @@
     border: none;
     background-color: rgb(241, 243, 246);
     box-shadow: 0px 7px 14px 0px rgba(54, 84, 170, 0.3),-4.95px -4.95px 14px 0px rgba(255, 255, 255, 0.004),inset 0px 12px 24px 0px rgba(55, 84, 170, 0.05),inset -8.485px -8.485px 24px 0px rgba(255, 255, 255, 0.6);
-    width: 205px;
+    width: 444px;
     height: 45px;
     z-index: 7;
-    margin-left: 160px;
-    margin-top: 34px;
+    margin-left:42px;
+    
+    margin-top: 42px;
    
   }
 
@@ -116,8 +127,9 @@
   }
 
  
+ 
 
-  #addSuccess>p{
+  /* #logInSuccess>p{
     font-size: 25px;
     font-family: "Microsoft YaHei";
     color: rgb(104, 141, 98);
@@ -133,4 +145,6 @@
     left: 50%;
     margin-left: -50px;
     z-index: 11;
-  }
+  } */
+
+  

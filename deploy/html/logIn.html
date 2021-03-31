@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生登陆</title>
+    <meta name="description" content="基于区块链的学位学历认证管理系统">
+    <meta name="keywords" content="区块链 学位学历认证 文特链 学生登陆">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../html/css/logIn.css">
+    <link rel="stylesheet" href="../html/css/normalize.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="roundRactangle1">
+            <div class="formTitle">
+                学生登录界面
+
+            </div>
+
+
+            <div class="roundRactangle2">
+                <p>学号<span style="margin-left: 8px;">|</span></p>
+                <input id="stuNumber" type="text" name="学号">
+            </div>
+            <div class="roundRactangle2">
+                <p>密码<span style="margin-left: 8px;">|</span></p>
+                <input id="password" type="password" name="密码">
+            </div>
+            <button id="Submit"><p>Login</p></button>
+            <div id="logInSuccess">
+                <!-- <p>登录成功</p>  -->
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/banner.js"></script>
+    <script src="js/jquery.js"></script>
+    <!-- 从服务器获得数据 -->
+    <!-- <script>
+        $.ajax({
+            url:"",
+            dataType:"json",
+            async:true,
+            caches:true,
+            data:{
+                //后端输入
+            },
+            type:"POST",
+            beforeSend:function(){},
+            success:function(){
+
+            },
+            complete:function(){
+
+            },
+            error :function(){
+
+            }
+        })
+    
+    </script> -->
+    <!-- 提交数据交服务器 -->
+    <script>
+        $(function() {
+            // 排除输入空值
+            $('#Submit').click(function() {
+                if ($('#stuNumber').val() == '') {
+                    alert('请输入学号');
+                    $('#stuNumber').focus();
+                    return;
+                } else if ($('#password').val() == '') {
+                    alert('请输入密码');
+                    $('#password').focus();
+                    return;
+                }
+                // 提交数据
+                var sendData = {
+                    "stuNumber": $('#stuNumber').val(),
+                    "password": $('#password').val()
+                };
+                $.ajax({
+                    type: "post",
+                    url: "{{sendDataUrl}}", //后端输入
+                    data: sendData,
+                    datatype: "json",
+                    success: function(msg) {
+                        var objmsg = eval('(' + msg + ')');
+                        console.log(objmsg.result); 
+                          alert(msg); 
+                        if (msg.state == 1 {
+                            //说明登录成功
+                            console.log(msg.data.name);
+                            // SetCookie("userid",msg.data.id);
+                            // window.location.href="main.html";
+                            //alert("欢迎:"+msg.data.name);
+                            let logInSuccess = document.getElementById('logInSuccess');
+                            let logInSuccessInfo = `<div id="logInSuccess"><p>登录成功</p> </div>`
+
+                            logInSuccess.innerHTML = logInSuccessInfo
+
+                        } else {
+                            //登录失败
+                            alert(msg.message);
+                        }
+
+                    },
+                    error: function(msg) {
+                        alert("登录失败，请重试");
+                    }
+                });
+            })
+        });
+    </script>
+</body>
+
+</html>
