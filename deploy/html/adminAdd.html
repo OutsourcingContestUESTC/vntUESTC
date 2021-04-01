@@ -21,7 +21,7 @@
 
             </div>
 
-
+            <form name="input" action="html_form_action.php" method="get"></form>
             <div class="roundRactangle2">
                 <p>学校名字<span style="margin-left: 8px;">|</span></p>
                 <input id="schoolName" type="text" name="学校名字">
@@ -31,6 +31,7 @@
                 <input id="publicKey" type="text" name="账号公钥">
             </div>
             <button id="Submit"><p>添加</p></button>
+            
             <div id="addSuccess">
                 <!-- <p>添加成功</p>  -->
             </div>
@@ -40,31 +41,7 @@
 
     <script src="js/banner.js"></script>
     <script src="js/jquery.js"></script>
-    <!-- 从服务器获得数据 -->
-    <!-- <script>
-        $.ajax({
-            url:"",
-            dataType:"json",
-            async:true,
-            caches:true,
-            data:{
-                //后端输入
-            },
-            type:"POST",
-            beforeSend:function(){},
-            success:function(){
-
-            },
-            complete:function(){
-
-            },
-            error :function(){
-
-            }
-        })
-    
-    </script> -->
-    <!-- 提交数据交服务器 -->
+   
     <script>
         $(function() {
             // 排除输入空值
@@ -84,37 +61,33 @@
                     "publicKey": $('#publicKey').val()
                 };
                 $.ajax({
-                    type: "post",
-                    url: "<%=sendDataUrl%>", //后端输入
-                    data: sendData,
-                    datatype: "json",
-                    success: function(msg) {
-                        /* var objmsg = eval('(' + msg + ')');
-                        console.log(objmsg.result); */
-                        /* alert(msg); */
-                        if (msg.state == 200) {
-                            //说明添加成功
-                            console.log(msg.data.name);
-                            // SetCookie("userid",msg.data.id);
-                            // window.location.href="main.html";
-                            //alert("欢迎:"+msg.data.name);
-                            let addSuccess = document.getElementById('addSuccess');
-                            let addSuccessInfo = `<div id="addSuccess"><p>添加成功</p> </div>`
+                        type: "post",
+                        url: "<%=sendDataUrl%>", //后端输入
+                        data: sendData,
+                        datatype: "json",
+                        success: function(msg) {
+                           
+                            if (msg.state == 200) {
+                                
+                                let addSuccess = document.getElementById('addSuccess');
+                                let addSuccessInfo = '<div id="addSuccess"><p>添加成功</p> </div>';
 
-                            addSuccess.innerHTML = addSuccessInfo
+                                addSuccess.innerHTML = addSuccessInfo;
 
-                        } else {
-                            //添加失败
-                            alert(msg.message);
+                            } else {
+                                //添加失败
+                                alert(msg.message);
+                            }
+
+                        },
+                        error: function(msg) {
+                            alert("添加失败，请重试");
                         }
-
-                    },
-                    error: function(msg) {
-                        alert("添加失败，请重试");
-                    }
-                });
+                    });
             })
         });
+
+
     </script>
 </body>
 

@@ -26,12 +26,12 @@
                     <div class="roundRectangle2" style="display: inline-block">
                         <p>姓名
                             <span style="margin-left: 8px;">|</span>
-                            <%=name>
+                            <%=name%>
                         </p>
                     </div>
                     <div class="roundRectangle2 " style="display: inline-block">
                         <p>籍贯<span style="margin-left: 8px;">|</span>
-                            <%=from>
+                            <%=from%>
                         </p>
                     </div>
                 </div>
@@ -41,20 +41,20 @@
                         <p>
                             性别
                             <span style="margin-left: 8px;">|</span>
-                            <%=sex>
+                            <%=sex%>
                         </p>
                     </div>
                     <div class="roundRectangle3 " style="display: inline-block;width: 140px;">
                         <p>民族
                             <span style="margin-left: 8px;">|</span>
-                            <%=nationality>
+                            <%=nationality%>
                         </p>
                     </div>
                     <div class="roundRectangle2 " style="display: inline-block">
                         <p>
                             身份证号
                             <span style="margin-left: 8px;">|</span>
-                            <%=IDNumber>
+                            <%=IDNumber%>
                         </p>
                     </div>
                 </div>
@@ -64,14 +64,14 @@
                         <p>
                             学号
                             <span style="margin-left: 8px;">|</span>
-                            <%=studentNumber>
+                            <%=studentNumber%>
                         </p>
                     </div>
                     <div class="roundRectangle2 " style="display: inline-block">
                         <p>
                             专业方向
                             <span style="margin-left: 8px;">|</span>
-                            <%=major>
+                            <%=major%>
                         </p>
                     </div>
                 </div>
@@ -81,14 +81,14 @@
                         <p>
                             学校
                             <span style="margin-left: 8px;">|</span>
-                            <%=school>
+                            <%=school%>
                         </p>
                     </div>
                     <div class="roundRectangle2 " style="display: inline-block">
                         <p>
                             毕业证书
                             <span style="margin-left: 8px;">|</span>
-                            <%=graduationCertificateNo>
+                            <%=graduationCertificateNo%>
                         </p>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                 <div class="submitSuccess">
                     <p>
                         注册成功，证书编号：
-                        <%=CertificateNo>
+                        <%=CertificateNo%>
                     </p>
                 </div>
 
@@ -128,7 +128,7 @@
         //调用路由，进行页面渲染
         app.get('/',function(request,response){
             //调用渲染模板
-            response.render('login',{
+            response.render('studentConfirmation',{
                 //传参
                 name:'', 
                 from:'',

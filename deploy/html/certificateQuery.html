@@ -37,80 +37,60 @@
 
     <script src="js/banner.js"></script>
     <script src="js/jquery.js"></script>
-    <!-- 从服务器获得数据 -->
-    <!-- <script>
-        $.ajax({
-            url:"",
-            dataType:"json",
-            async:true,
-            caches:true,
-            data:{
-                //后端输入
-            },
-            type:"POST",
-            beforeSend:function(){},
-            success:function(){
-
-            },
-            complete:function(){
-
-            },
-            error :function(){
-
-            }
-        })
     
     </script> -->
     <!-- 上传文件 -->
     <script>
     $(function() {
-    $('#Submit').on('click', function() {
-    // 获取文件列表
-    var file = $('#ipt')[0].files
-     // 判断是否选择了文件
-    if (file.length <= 0) {
-     return alert('请上传文件')
-    }
-    // 创建formdata
-    var fd = new FormData()
-     // 向formdata中传入数据
-     // fd.append()
-     // file是一个伪数组
-    fd.append('avatar', file[0])
-     // 用ajax传送数据
-    $.ajax({
-     type: 'post',
-     url: '<%=>/api/upload/avatar',//上传数据目标网址
-     // 数据不需要编码
-     contentType: false,
-     // 数据对象不需要转换成键值对格式
-     processData: false,
-     data: fd,
-     beforeSend: function() {
-     $('#beforeUploding').show()
-     },
-     complete: function() {
-     $('#beforeUploding').hide()
-     },
-     success: function(res) {
-     // 判断是否接收成功
-     if (res.status !== 200) {
-     return alert(reg.msg)
-     }
-     $('#beforeUploding').hide()
-     $('#succeedUploding').show()
-     },
+        $('#Submit').on('click', function() {
+            // 获取文件列表
+            var file = $('#ipt')[0].files;
+            // 判断是否选择了文件
+            if (file.length <= 0) {
+                return alert('请上传文件')
+            }
+            // 创建formdata
+            var fd = new FormData();
+            // 向formdata中传入数据
+            // fd.append()
+            // file是一个伪数组
+            fd.append('certificateFile', file[0]);
+            //https://developer.mozilla.org/en-US/docs/Web/API/FormData/append
+            //formData.append(name, value);
+            // 用ajax传送数据
+            $.ajax({
+                type: 'post',
+                url: "<%=certificateQuerySendDataUrl%>",//上传数据目标网址
+                // 数据不需要编码
+                contentType: false,
+                // 数据对象不需要转换成键值对格式
+                processData: false,
+                data: fd,
+                beforeSend: function() {
+                    $('#beforeUploding').show()
+                },
+                complete: function() {
+                    $('#beforeUploding').hide()
+                },
+                success: function(res) {
+                    // 判断是否接收成功
+                    if (res.status == 200) {
+                        $('#beforeUploding').hide()
+                        $('#succeedUploding').show()
+                    }else{
+                        alert(msg.message);
+                    }
+                },
+                error: function(msg) {
+                    $('#beforeUploding').hide()
+                    $('#failUploding').show()
+                }
+            
+            });
+            
+        })
     
-     error: function(msg) {
-        $('#beforeUploding').hide()
-        $('#failUploding').show()
-    }
-    
-    })
-    
-    })
-    
-    })
+    });
     </script>
 </body>
 
