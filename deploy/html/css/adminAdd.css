@@ -1,32 +1,32 @@
 .container {
     position: relative;
-    background-image: url("../images/图层1.png");
+    background-color: rgb(241, 243, 246);
     width: 1366px;
     height: 768px;
     z-index: 12;
     /* 居中 */
     margin: 0 auto;
-  }
+}
 
-  .roundRactangle1 {
+.roundRactangle1 {
     position: relative;
     padding-top: 36px;
     border-radius: 35px;
     background-color: rgb(241, 243, 246);
-    box-shadow: 0px 15px 35px 0px rgba(55, 84, 170, 0.2),-10.607px -10.607px 35px 0px rgba(255, 255, 255, 0.004);
+    box-shadow: 0px 15px 35px 0px rgba(55, 84, 170, 0.2), -10.607px -10.607px 35px 0px rgba(255, 255, 255, 0.004);
     position: relative;
     /* left: 405px;
     top: 197px; */
-    top:50%;
+    top: 50%;
     left: 50%;
     margin-top: -187px;
     margin-left: -227.5px;
     width: 555px;
     height: 374px;
     z-index: 3;
-  }
+}
 
-  .formTitle {
+.formTitle {
     position: relative;
     font-size: 50px;
     font-family: "Microsoft YaHei";
@@ -34,19 +34,17 @@
     font-weight: bold;
     line-height: 1.2;
     text-align: center;
-    text-shadow: 0px 2px 4px rgba(54, 84, 170, 0.31),-1.414px -1.414px 4px rgba(255, 255, 255, 0.004);
-    -moz-transform: matrix( 0.49415206704218,0,0,0.49415205967874,0,0);
-    -webkit-transform: matrix( 0.49415206704218,0,0,0.49415205967874,0,0);
-    -ms-transform: matrix( 0.49415206704218,0,0,0.49415205967874,0,0);
-    
+    text-shadow: 0px 2px 4px rgba(54, 84, 170, 0.31), -1.414px -1.414px 4px rgba(255, 255, 255, 0.004);
+    -moz-transform: matrix( 0.49415206704218, 0, 0, 0.49415205967874, 0, 0);
+    -webkit-transform: matrix( 0.49415206704218, 0, 0, 0.49415205967874, 0, 0);
+    -ms-transform: matrix( 0.49415206704218, 0, 0, 0.49415205967874, 0, 0);
     z-index: 6;
-  }
+}
 
-  .roundRactangle2 {
+.roundRactangle2 {
     position: relative;
-    
     background-color: rgb(241, 243, 246);
-    box-shadow: inset 0px 6px 12px 0px rgba(55, 84, 170, 0.2),inset -4.243px -4.243px 12px 0px rgba(255, 255, 255, 0.004);
+    box-shadow: inset 0px 6px 12px 0px rgba(55, 84, 170, 0.2), inset -4.243px -4.243px 12px 0px rgba(255, 255, 255, 0.004);
     margin-top: 30px;
     margin-bottom: 7px;
     margin-left: auto;
@@ -55,82 +53,74 @@
     width: 446px;
     height: 39px;
     z-index: 4;
-  }
+}
 
-
-  .roundRactangle1  p{
+.roundRactangle1 p {
     display: inline;
     font-size: 25px;
     font-family: "Microsoft YaHei";
     color: rgb(117, 117, 117);
     font-weight: bold;
-    line-height:39px;
+    line-height: 39px;
     text-align: left;
-    text-shadow: 0px 2px 3px rgba(54, 84, 170, 0.31),-1.414px -1.414px 3px rgba(255, 255, 255, 0.004);
-    -moz-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
-    -webkit-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
-    -ms-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+    text-shadow: 0px 2px 3px rgba(54, 84, 170, 0.31), -1.414px -1.414px 3px rgba(255, 255, 255, 0.004);
+    -moz-transform: matrix( 0.80000001192093, 0, 0, 0.8, 0, 0);
+    -webkit-transform: matrix( 0.80000001192093, 0, 0, 0.8, 0, 0);
+    -ms-transform: matrix( 0.80000001192093, 0, 0, 0.8, 0, 0);
     /* position: absolute;
     left: 469.144px;
     top: 432.491px; */
     margin-left: 19px;
     z-index: 9;
-  }
+}
 
-  input{
+input {
     height: 39px;
     border: none;
     background-color: rgb(241, 243, 246);
-    box-shadow: inset 0px 6px 12px 0px rgba(55, 84, 170, 0.2),inset -4.243px -4.243px 12px 0px rgba(255, 255, 255, 0.004);
+    box-shadow: inset 0px 6px 12px 0px rgba(55, 84, 170, 0.2), inset -4.243px -4.243px 12px 0px rgba(255, 255, 255, 0.004);
     border-radius: 20px;
     width: 300px;
-    
-  }
-  
+}
 
-  #Submit {
+#Submit {
     border-radius: 10px;
     border: none;
     background-color: rgb(241, 243, 246);
-    box-shadow: 0px 7px 14px 0px rgba(54, 84, 170, 0.3),-4.95px -4.95px 14px 0px rgba(255, 255, 255, 0.004),inset 0px 12px 24px 0px rgba(55, 84, 170, 0.05),inset -8.485px -8.485px 24px 0px rgba(255, 255, 255, 0.6);
+    box-shadow: 0px 7px 14px 0px rgba(54, 84, 170, 0.3), -4.95px -4.95px 14px 0px rgba(255, 255, 255, 0.004), inset 0px 12px 24px 0px rgba(55, 84, 170, 0.05), inset -8.485px -8.485px 24px 0px rgba(255, 255, 255, 0.6);
     width: 205px;
     height: 45px;
     z-index: 7;
     margin-left: 160px;
     margin-top: 34px;
-   
-  }
+}
 
-  #Submit p{
+#Submit p {
     font-size: 25px;
     font-family: "Microsoft YaHei";
     color: rgb(117, 117, 117);
     font-weight: bold;
     line-height: 42px;
-
     text-align: center;
-    text-shadow: 0px 3px 7px rgba(54, 84, 170, 0.3),-2.121px -2.121px 7px rgba(255, 255, 255, 0.004);
+    text-shadow: 0px 3px 7px rgba(54, 84, 170, 0.3), -2.121px -2.121px 7px rgba(255, 255, 255, 0.004);
     width: 66px;
     height: 42px;
     z-index: 10;
-  }
+}
 
- 
-
-  #addSuccess>p{
+#addSuccess>p {
     font-size: 25px;
     font-family: "Microsoft YaHei";
     color: rgb(104, 141, 98);
     font-weight: bold;
     line-height: 25px;
     text-align: center;
-    text-shadow: 0px 2px 3px rgba(54, 84, 170, 0.31),-1.414px -1.414px 3px rgba(255, 255, 255, 0.004);
-    -moz-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
-    -webkit-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
-    -ms-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+    text-shadow: 0px 2px 3px rgba(54, 84, 170, 0.31), -1.414px -1.414px 3px rgba(255, 255, 255, 0.004);
+    -moz-transform: matrix( 0.80000001192093, 0, 0, 0.8, 0, 0);
+    -webkit-transform: matrix( 0.80000001192093, 0, 0, 0.8, 0, 0);
+    -ms-transform: matrix( 0.80000001192093, 0, 0, 0.8, 0, 0);
     position: absolute;
-    
     left: 50%;
     margin-left: -50px;
     z-index: 11;
-  }
+}

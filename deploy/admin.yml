@@ -1,6 +1,6 @@
 apps:
   - script: ./admin.js
-    name: test
+    name: admin
     env_production:
       NODE_ENV: production
       HOST: localhost
