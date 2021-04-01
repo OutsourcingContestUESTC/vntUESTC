@@ -1,0 +1,1 @@
+[{"name":"Migrations","constant":false,"inputs":[],"outputs":[],"type":"constructor"},{"name":"setCompleted","constant":false,"inputs":[{"name":"completed","type":"uint32","indexed":false}],"outputs":[],"type":"function"},{"name":"get_last_completed_migration","constant":true,"inputs":[],"outputs":[{"name":"output","type":"uint32","indexed":false}],"type":"function"}]
