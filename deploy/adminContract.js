@@ -1,23 +1,22 @@
 var vnt = require("vnt");
 var fs = require("fs");
 
+
 if (!vnt.currentProvider)
     vnt.setProvider(new vnt.providers.HttpProvider("http://192.168.0.110:8805"));
 // vnt.setProvider(new vnt.providers.HttpProvider("http://47.111.100.232:8880"));
 
-var contractAddr = "0xasdfasdfasdfasdf";
+var contractAddr;
 
 // 声明账户地址和密码
 // from1填写adminer的账号
-var from1 = "0x122369f04f32269598789998de33e3d56e2c507a";
-var pass1 = "";
-var from2 = "0x3dcf0b3787c31b2bdf62d5bc9128a79c2bb18829";
-var pass2 = "";
+var from = "0xab84c2a6acac9c5c603c91c475f99fc5345ace9d";
+var pass = "";
 // 转给自己
-var toAddr = from1;
+var toAddr = from;
 
 // 打开账户。打开后，账户的密钥就会被vntchain节点管理起来，用作交易签名
-vnt.personal.unlockAccount(from1, pass1);
+vnt.personal.unlockAccount(from, pass);
 // vnt.personal.unlockAccount(from2, pass2)
 
 //定义代码路径
@@ -37,7 +36,7 @@ function deployWasmContract() {
     // 部署合约
     // 这里我们不需要显式的签名，vntchain节点会帮我们签名，使用一个封装友好的new接口就能部署合约
     var contractReturned = contract.new(1000000000, "bitcoin", "BTC", {
-        from: from1, //from参数对应的账户会被用作交易签名
+        from: from, //from参数对应的账户会被用作交易签名
         data: contract.code, //将合约的代码当作data传入
         gas: 4000000
     }, function(err, myContract) {
@@ -46,6 +45,7 @@ function deployWasmContract() {
                 console.log("transactionHash: ", myContract.transactionHash)
             } else {
                 console.log("contract address: ", myContract.address)
+                contractAddr = myContract.address
             }
         }
     });
@@ -83,3 +83,6 @@ function AddSchool(schoolIn, schoolPk) {
             }
         })
 }
+
+exports.deployWasmContract = deployWasmContract;
+exports.AddSchool = AddSchool;

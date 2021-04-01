@@ -1,6 +1,7 @@
 var express = require('express');
 var ejs = require('ejs');
-var path = require("path")
+var path = require("path");
+var constract = require("./adminContract");
 var app = express();
 
 app.use('/html', express.static('html'));
@@ -29,14 +30,18 @@ app.get('/admin', function(req, res) {
 })
 app.post('/admin', function(req, res) {
     console.log("postDataAdminHtml");
-    console.log(req.query)
-        // res.render("adminAdd", {
-        //     sendDataUrl: 'http://127.0.0.1:8082'
-        // });
+    // console.log(req.query)
+    var result = constract.AddSchool("uestc", "asdfasdfasdfasdfasdfasdf");
+    console.log(result);
+    // res.render("adminAdd", {
+    //     sendDataUrl: 'http://127.0.0.1:8082'
+    // });
 })
 
 var server = app.listen(8082, function() {
-
+    constract.deployWasmContract();
+    var result = constract.AddSchool("uestc", "asdfasdfasdfasdfasdfasdf");
+    console.log(result);
     var host = server.address().address
     var port = server.address().port
 
