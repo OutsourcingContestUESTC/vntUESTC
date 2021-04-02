@@ -35,24 +35,12 @@ app.get('/admin', function(req, res) {
 })
 app.post('/admin', function(req, res) {
     console.log("postDataAdminHtml");
-    res.writeHead(200, {
-        'Content-Type': 'text/html; charset=UTF8'
-    });
-    var response = {
-        "schoolName": req.query.schoolName,
-        "schoolPk": req.query.publicKey
-    };
+    var schoolIn = req.body.schoolName;
+    var schoolName = req.body.publicKey
     console.log(req.body);
-    // console.log(req);
     // var result = constract.AddSchool("uestc", "asdfasdfasdfasdfasdfasdf");
     // console.log(result);
-    // res.render("adminAdd", {
-    //     sendDataUrl: 'http://127.0.0.1:8082'
-    // });
-    // res.render("dyAdminAdd.html", {
-    //     sendDataUrl: 'http://127.0.0.1:8082/admin',
-    //     result: 'SUCCESS!'
-    // });
+    res.json(200, { state: 200 });
 })
 
 var server = app.listen(8082, function() {
