@@ -1,30 +1,27 @@
-  .container {
-    position: relative;
-    background-image: url("../images/图层1.png");
-    width: 1366px;
-    height: 768px;
-    z-index: 12;
-    /* 居中 */
-    margin: 0 auto;
-  }
+body { 
+  background-color:#F1F3F6;
+}
 
-  .roundRactangle1 {
-    position: relative;
-    padding-top: 36px;
-    border-radius: 35px;
-    background-color: rgb(241, 243, 246);
-    box-shadow: 0px 15px 35px 0px rgba(55, 84, 170, 0.2),-10.607px -10.607px 35px 0px rgba(255, 255, 255, 0.004);
-    
-    /* left: 405px;
-    top: 197px; */
-    top:50%;
-    left: 50%;
-    margin-top: -187px;
-    margin-left: -227.5px;
-    width: 555px;
-    height: 374px;
-    z-index: 3;
-  }
+.container{
+  width: 1366px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.roundRactangle1 {
+  border-radius: 35px;
+  background-color: rgb(241, 243, 246);
+  box-shadow: 0px 15px 35px 0px rgba(55, 84, 170, 0.2), -10.607px -10.607px 35px 0px rgba(255, 255, 255, 1);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 555px;
+  height: 374px;
+  z-index: 3;
+}
 
   .roundRactangle1  p{
     display: inline;
@@ -38,9 +35,7 @@
     -moz-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
     -webkit-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
     -ms-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
-    /* position: absolute;
-    left: 469.144px;
-    top: 432.491px; */
+   
     margin-left: 19px;
     z-index: 9;
   }
@@ -89,8 +84,12 @@
   }
 
   .roundRactangle2>p{
+    font-size: 25px;
+    line-height:39px;
+    height: 39px;
+    text-align: center;
+    display: block;
     
-      margin-left: 130px; 
   }
 
 
@@ -104,8 +103,8 @@
     width: 444px;
     height: 45px;
     z-index: 7;
-    margin-left:42px;
-    
+    display: block;
+    margin: auto;
     margin-top: 42px;
    
   }
@@ -121,28 +120,12 @@
     text-shadow: 0px 3px 7px rgba(54, 84, 170, 0.3),-2.121px -2.121px 7px rgba(255, 255, 255, 0.004);
     width: 66px;
     height: 42px;
+    margin-left: 0px;
     z-index: 10;
   }
 
  
  
 
-  /* #logInSuccess>p{
-    font-size: 25px;
-    font-family: "Microsoft YaHei";
-    color: rgb(104, 141, 98);
-    font-weight: bold;
-    line-height: 25px;
-    text-align: center;
-    text-shadow: 0px 2px 3px rgba(54, 84, 170, 0.31),-1.414px -1.414px 3px rgba(255, 255, 255, 0.004);
-    -moz-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
-    -webkit-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
-    -ms-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
-    position: absolute;
-    
-    left: 50%;
-    margin-left: -50px;
-    z-index: 11;
-  } */
 
   

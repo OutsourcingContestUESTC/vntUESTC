@@ -18,18 +18,17 @@
     <div class="container">
         <div class="roundRectangle1">
             <div class="formTitle">
-                证书信息移除
-                
+                证书信息移除   
             </div>
-            <diV class="information">
+            <div class="information">
                 <div class="line">
-                    <div class="roundRectangle2" style="display: inline-block">
+                    <div class="roundRectangle2l" style="display: inline-block">
                         <p>姓名
                             <span style="margin-left: 8px;">|</span>
                             <%=name%>
                         </p>
                     </div>
-                    <div class="roundRectangle2 " style="display: inline-block">
+                    <div class="roundRectangle2r " style="display: inline-block">
                         <p>籍贯<span style="margin-left: 8px;">|</span>
                             <%=from%>
                         </p>
@@ -44,13 +43,13 @@
                             <%=sex%>
                         </p>
                     </div>
-                    <div class="roundRectangle3 " style="display: inline-block;width: 140px;">
+                    <div class="roundRectangle3 " style="display: inline-block;width: 140px;margin-left: 40px;margin-right: 50px;">
                         <p>民族
                             <span style="margin-left: 8px;">|</span>
                             <%=nationality%>
                         </p>
                     </div>
-                    <div class="roundRectangle2 " style="display: inline-block">
+                    <div class="roundRectangle2r " style="display: inline-block">
                         <p>
                             身份证号
                             <span style="margin-left: 8px;">|</span>
@@ -60,14 +59,14 @@
                 </div>
                 
                 <div class="line">
-                    <div class="roundRectangle2" style="display: inline-block">
+                    <div class="roundRectangle2l" style="display: inline-block">
                         <p>
                             学号
                             <span style="margin-left: 8px;">|</span>
                             <%=studentNumber%>
                         </p>
                     </div>
-                    <div class="roundRectangle2 " style="display: inline-block">
+                    <div class="roundRectangle2r " style="display: inline-block">
                         <p>
                             专业方向
                             <span style="margin-left: 8px;">|</span>
@@ -77,14 +76,14 @@
                 </div>
 
                 <div class="line">
-                    <div class="roundRectangle2" style="display: inline-block">
+                    <div class="roundRectangle2l" style="display: inline-block">
                         <p>
                             学校
                             <span style="margin-left: 8px;">|</span>
                             <%=school%>
                         </p>
                     </div>
-                    <div class="roundRectangle2 " style="display: inline-block">
+                    <div class="roundRectangle2r " style="display: inline-block">
                         <p>
                             毕业证书
                             <span style="margin-left: 8px;">|</span>
@@ -100,28 +99,21 @@
                         今日 ——
                     </p>
                     <!-- 由于CSS定义无用，暂时写在html中 -->
-                    <div class="roundRectangle2 " style="display: inline-block">
+                    <div class="roundRectangle2l " style="display: inline-block">
                         <p>
                             <%=freezeDate%>
                         </p>
-                    </div>
-                    
-                    
+                    </div>    
                 </div>
-
-                <button  id="remove"><p>移除</p></button>
-                <div class="removeSuccess">
-                    <p>
-                        证书：
-                        <%=CertificateNo%>
-                        移除成功！
-                    </p>
-                </div>
-                
-    
-
-            </diV>
-           
+            </div>   
+            <button  id="remove"><p>移除</p></button>
+            <div class="removeSuccess">
+                <p>
+                    证书：
+                    <%=CertificateNo%>
+                    移除成功！
+                </p>
+            </div>
         </div>
     </div>
 
