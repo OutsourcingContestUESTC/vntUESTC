@@ -72,16 +72,16 @@
                             //说明传入完成
                             console.log(msg.data.name);
                             // SetCookie("userid",msg.data.id);
-                            // window.location.href="main.html";
-                            //alert("欢迎:"+msg.data.name);
+                            window.location.href="studentConfirmation.html";//登录成功，页面跳转到studentConfirmation.html
+                            alert("欢迎:"+msg.data.name);
                             let logInSuccess = document.getElementById('logInSuccess');
                             let logInSuccessInfo = '<div id="logInSuccess"><p>登录成功</p> </div>';
 
                             logInSuccess.innerHTML = logInSuccessInfo;
 
                         } else {
-                            //登录失败
-                            alert(msg.message);
+                            //信息返回不为正常值200，返回"添加失败"+msg.message+"请重试"
+                            alert("添加失败"+msg.message+"请重试");
                         }
 
                     },

@@ -78,7 +78,7 @@
                         $('#beforeUploding').hide()
                         $('#succeedUploding').show()
                     }else{
-                        alert(msg.message);
+                        alert("文件上传失败"+msg.message+"请重试");
                     }
                 },
                 error: function(msg) {

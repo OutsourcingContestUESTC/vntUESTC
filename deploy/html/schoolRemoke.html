@@ -107,7 +107,7 @@
                 </div>
             </div>   
             <button  id="remove"><p>移除</p></button>
-            <div class="removeSuccess">
+            <div class="removeSuccess" id="succeedremoving" style="display: none;">
                 <p>
                     证书：
                     <%=CertificateNo%>
@@ -121,40 +121,35 @@
 
     <script src="js/banner.js"></script>
     <script src="js/jquery.js"></script>
-    <!-- 从服务器获得数据 -->
+    <!-- 提交数据交服务器 -->
     <script>
-        var express=require('express');
-        var ejs=require('ejs');
-        
-        app=express();
-        //设置渲染文件的目录
-        app.set('views','./views');
-        //设置html模板渲染引擎
-        app.engine('html',ejs.__express);
-        //设置渲染引擎为html
-        app.set('view engine','html');
-        
-        //调用路由，进行页面渲染
-        app.get('/',function(request,response){
-            //调用渲染模板
-            response.render('login',{
-                //传参
-                name:'', 
-                from:'',
-                sex:'',
-                nationality:'',
-                IDNumber:'',
-                studentNumber:'',
-                major:'',
-                school:'',
-                graduationCertificateNo:'',
-                freezeDate:'',
-                CertificateNo:''
-            });
-        
+        $(function() {
+            $('#remove').on('click', function() {
+                $.ajax({
+                    type: "get",
+                    url: "<%=schoolRemokeSendDataUrlUrl%>", //后端输入
+                    data: true,
+                    datatype: Boolean,
+                    success: function(msg) {
+
+                        if (msg.state == 200) {
+                            //说明传入完成
+                            $('#succeedremoving').show()
+
+                        } else {
+                            //信息返回不为正常值200，返回"添加失败"+msg.message+"请重试"
+                            alert("移除失败"+msg.message+"请重试");
+                        }
+
+                    },
+                    error: function(msg) {
+                        alert("移除失败，请重试");
+                    }
+                });
+             
+            })
+            
         });
-        app.listen(8005);
-        console.log('http://127.0.0.1:8005');
     </script>
    
 </body>
