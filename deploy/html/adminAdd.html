@@ -31,7 +31,7 @@
                 <input id="publicKey" type="text" name="账号公钥">
             </div>
             <button id="Submit"><p>添加</p></button>
-            
+
             <div id="addSuccess">
                 <!-- <p>添加成功</p>  -->
             </div>
@@ -41,7 +41,7 @@
 
     <script src="js/banner.js"></script>
     <script src="js/jquery.js"></script>
-   
+
     <script>
         $(function() {
             // 排除输入空值
@@ -60,34 +60,33 @@
                     "schoolName": $('#schoolName').val(),
                     "publicKey": $('#publicKey').val()
                 };
+                console.log(sendData);
                 $.ajax({
-                        type: "post",
-                        url: "<%=sendDataUrl%>", //后端输入
-                        data: sendData,
-                        datatype: "json",
-                        success: function(msg) {
-                           
-                            if (msg.state == 200) {
-                                
-                                let addSuccess = document.getElementById('addSuccess');
-                                let addSuccessInfo = '<div id="addSuccess"><p>添加成功</p> </div>';
+                    type: "post",
+                    url: "<%=sendDataUrl%>", //后端输入
+                    data: sendData,
+                    datatype: "json",
+                    success: function(msg) {
 
-                                addSuccess.innerHTML = addSuccessInfo;
+                        if (msg.state == 200) {
 
-                            } else {
-                                //添加失败
-                                alert(msg.message);
-                            }
+                            let addSuccess = document.getElementById('addSuccess');
+                            let addSuccessInfo = '<div id="addSuccess"><p>添加成功</p> </div>';
 
-                        },
-                        error: function(msg) {
-                            alert("添加失败，请重试");
+                            addSuccess.innerHTML = addSuccessInfo;
+
+                        } else {
+                            //添加失败
+                            alert(msg.message);
                         }
-                    });
+
+                    },
+                    error: function(msg) {
+                        alert("添加失败，请重试");
+                    }
+                });
             })
         });
-
-
     </script>
 </body>
 

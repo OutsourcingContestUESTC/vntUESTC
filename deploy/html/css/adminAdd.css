@@ -108,7 +108,7 @@ input {
     z-index: 10;
 }
 
-#addSuccess>p {
+#addSuccess p {
     font-size: 25px;
     font-family: "Microsoft YaHei";
     color: rgb(104, 141, 98);
