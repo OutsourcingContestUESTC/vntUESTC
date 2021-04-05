@@ -2,6 +2,7 @@ var express = require('express');
 var ejs = require('ejs');
 var path = require("path");
 var bodyParser = require('body-parser');
+var fs = require('fs')
 const { encrypt, decrypt } = require('./crypto');
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -16,12 +17,20 @@ app.use(express.static(path.join(__dirname, '/html')));
 // app.use('/js', express.static('/html/js'));
 
 var url = 'http://127.0.0.1:';
-var port = 8081;
+var port = 8084;
 
 app.set('views', path.join(__dirname, './html'));
 app.engine('html', require('ejs').__express);
 app.set('view engine', 'html');
 
+
+const storeData = (data, path) => {
+    try {
+        fs.writeFileSync(path, JSON.stringify(data))
+    } catch (err) {
+        console.error(err)
+    }
+}
 
 function check(stdId, pwd) {
     if (stdId == '2018123401001' && pwd == '1234567890')
