@@ -9,7 +9,7 @@
     <meta name="description" content="基于区块链的学位学历认证管理系统">
     <meta name="keywords" content="区块链 学位学历认证 文特链 学生信息确认">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    
+
     <link rel="stylesheet" href="../html/css/normalize.css">
     <link rel="stylesheet" href="../html/css/studentConfirmation.css">
 </head>
@@ -19,7 +19,7 @@
         <div class="roundRectangle1">
             <div class="formTitle">
                 证书信息确认
-                
+
             </div>
             <div class="information">
                 <div class="line">
@@ -58,7 +58,7 @@
                         </p>
                     </div>
                 </div>
-                
+
                 <div class="line">
                     <div class="roundRectangle2l" style="display: inline-block">
                         <p>
@@ -93,17 +93,17 @@
                     </div>
                 </div>
 
-                <div class="submitSuccess"  id="succeedregistering" style="display: none;">
+                <div class="submitSuccess" id="succeedregistering" style="display: none;">
                     <p>
                         注册成功，证书编号：
                         <%=CertificateNo%>
                     </p>
                 </div>
-                <button  id="submit"><p>注册</p></button>
-                <button  id="download"><p>下载</p></button>
+                <button id="submit"><p>注册</p></button>
+                <button id="download"><p>下载</p></button>
             </div>
-           
-            
+
+
         </div>
     </div>
 
@@ -112,13 +112,13 @@
     <script src="js/banner.js"></script>
     <script src="js/jquery.js"></script>
     <!-- 从服务器获得数据 -->
-     <!-- 提交数据交服务器 -->
-     <script>
+    <!-- 提交数据交服务器 -->
+    <script>
         $(function() {
             $('#submit').on('click', function() {
                 $.ajax({
                     type: "get",
-                    url: "<%=studentConfirmationSendDataUrl%>", //后端输入
+                    url: "<%=studentConfirmationSendDataUrl%>" + "&<%=uid%>" + "&<%=p%>", //后端输入
                     data: true,
                     datatype: Boolean,
                     success: function(msg) {
@@ -129,7 +129,7 @@
 
                         } else {
                             //信息返回不为正常值200，返回"添加失败"+msg.message+"请重试"
-                            alert("注册失败"+msg.message+"请重试");
+                            alert("注册失败" + msg.message + "请重试");
                         }
 
                     },
@@ -137,12 +137,12 @@
                         alert("注册失败，请重试");
                     }
                 });
-             
+
             })
-            
+
         });
     </script>
-   
+
 </body>
 
 </html>

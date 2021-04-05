@@ -15,12 +15,12 @@ app.use(express.static(path.join(__dirname, '/html')));
 // app.use('/images', express.static('/html/images'));
 // app.use('/js', express.static('/html/js'));
 
-
+var url = 'http://127.0.0.1:';
+var port = 8081;
 
 app.set('views', path.join(__dirname, './html'));
 app.engine('html', require('ejs').__express);
 app.set('view engine', 'html');
-
 
 
 function check(stdId, pwd) {
@@ -32,12 +32,11 @@ function check(stdId, pwd) {
                 from: '北京',
                 sex: '男',
                 nationality: '汉',
-                IDNumber: '44444444444444444',
+                IDNumber: '444444444444444',
                 studentNumber: '2018123401001',
                 major: '计算机系统与技术',
                 school: '华夏人民大学',
-                graduationCertificateNo: '1145141919',
-                CertificateNo: ''
+                graduationCertificateNo: '1145141919'
             }
         };
     if (stdId == '2017432109009' && pwd == '88888888')
@@ -48,12 +47,11 @@ function check(stdId, pwd) {
                 from: '上海',
                 sex: '女',
                 nationality: '满',
-                IDNumber: '33333333333333333',
+                IDNumber: '333333333333333',
                 studentNumber: '2017432109009',
                 major: '信息与软件工程',
                 school: '京城政法大学',
-                graduationCertificateNo: '1928374650',
-                CertificateNo: ''
+                graduationCertificateNo: '1928374650'
             }
         };
     return {
@@ -72,6 +70,18 @@ function check(stdId, pwd) {
     };
 }
 
+function extend(target, source) {
+    for (var obj in source) {
+        target[obj] = source[obj];
+    }
+    return target;
+}
+
+function getrandom() {
+    return "random=" +
+        Math.random().toString(36).substr(2);
+}
+
 function getCertificateNo(info) {
     var infoStr = JSON.stringify(info);
     // 访问区块链
@@ -79,7 +89,8 @@ function getCertificateNo(info) {
     var split = result.split(":")
     return {
         state: split[0],
-        no: split[1]
+        no: split[1],
+        total: result
     };
 }
 
@@ -92,20 +103,57 @@ app.get('/test1', function(req, res) {
 app.get('/login', function(req, res) {
     console.log("getAdminHtml");
     res.render("logIn.html", {
-        logInSendDataUrl: 'http://127.0.0.1:8081/studentCertificate'
+        logInSendDataUrl: url + port + '/studentCertificate?' + getrandom()
     });
 })
-app.get('/studentCertificate', function(req, res) {
+
+
+// 2018123401001 1234567890
+// 2017432109009 88888888
+app.post('/studentCertificate', function(req, res) {
+    console.log("postDataAdminHtml");
+    console.log(req.body);
+    var schoolId = req.body.stuNumber;
+    var pwd = req.body.password
+    var result = check(schoolId, pwd)
+    if (result.state == true) {
+        var j = { state: 200 };
+        // console.log(getCertificateNo(result.info));
+        res.json(200, extend({ data: result.info }, j));
+    } else {
+        res.json(200, { state: 201 });
+    }
+})
+
+app.get('/studentConfimation', function(req, res) {
     console.log("postDataAdminHtml");
     console.log(req.query);
     var schoolId = req.query.stuNumber;
     var pwd = req.query.password
     var result = check(schoolId, pwd)
     if (result.state == true) {
-        console.log(getCertificateNo(result.info));
-        res.render("studentConfirmation", result.info);
+        var j = { state: 200, studentConfirmationSendDataUrl: url + port + '/getCertificateNo?' + getrandom(), uid: "stuNumber=" + schoolId, p: "password=" + pwd };
+        console.log(j.studentConfirmationSendDataUrl)
+        console.log(extend(result.info, j));
+        res.render("studentConfirmation", extend(result.info, j));
     } else {
-        res.json(200, { state: 201 })
+        res.json(200, extend({ state: 201 }, result));
+    }
+})
+
+app.get('/getCertificateNo', function(req, res) {
+    console.log("getCertificateNo");
+    console.log(req.query);
+    var schoolId = req.query.stuNumber;
+    var pwd = req.query.password
+    var info = check(schoolId, pwd).info
+    console.log(info);
+    var result = getCertificateNo(info);
+    console.log(result);
+    if (result.state == "SUCCESS") {
+        var j = { state: 200 };
+
+        res.json(200, extend(result, j));
     }
 })
 
@@ -113,13 +161,13 @@ app.get('/domloadCertificate', function(req, res) {
 
 })
 
-var server = app.listen(8081, function() {
+var server = app.listen(port, function() {
     // constract.deployWasmContract();
     // var result = constract.AddSchool("uestc", "asdfasdfasdfasdfasdfasdf");
     // console.log(result);
     var host = server.address().address
-    var port = server.address().port
+    var port_ = server.address().port
 
-    console.log("应用实例，访问地址为 http://%s:%s", host, port)
+    console.log("应用实例，访问地址为 http://%s:%s", host, port_)
 
 })
