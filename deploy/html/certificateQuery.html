@@ -21,7 +21,8 @@
                 证书查询
 
             </div>
-            <input type="file" multiple name="" id="ipt" multiple>
+            <input type="file" multiple name="" id="ipt" multiple style="display: none; ">
+            <button id="select"><p>文件选择</p></button>
             <button id="Submit"><p>上传</p></button>
             <div id="logInSuccess">
                
@@ -42,6 +43,10 @@
     <!-- 上传文件 -->
     <script>
     $(function() {
+        $('#select').click(function() {
+            $('#ipt').click(); // 模拟文件上传按钮点击操作
+
+        });
         $('#Submit').on('click', function() {
             // 获取文件列表
             var file = $('#ipt')[0].files;

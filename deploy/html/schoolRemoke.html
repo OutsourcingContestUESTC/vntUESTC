@@ -108,11 +108,11 @@
             </div>   
             <button  id="remove"><p>移除</p></button>
             <div class="removeSuccess" id="succeedremoving" style="display: none;">
-                <p>
+                <!-- <p>
                     证书：
                     <%=CertificateNo%>
                     移除成功！
-                </p>
+                </p> -->
             </div>
         </div>
     </div>
@@ -126,16 +126,22 @@
         $(function() {
             $('#remove').on('click', function() {
                 $.ajax({
-                    type: "get",
+                    type: "post",
                     url: "<%=schoolRemokeSendDataUrlUrl%>", //后端输入
                     data: true,
                     datatype: Boolean,
                     success: function(msg) {
 
-                        if (msg.state == 200) {
+                        if (msg.status == 200) {
                             //说明传入完成
                             $('#succeedremoving').show()
-
+                            let registeringSuccess = document.getElementById('succeedregistering');
+                            let removingSuccessInfo = '<div id="succeedremoving">'
+                                +' <p>证书：'
+                                +msg.no
+                                +' 移除成功！</p> </div>';
+                        
+                            removingSuccess.innerHTML = removingSuccessInfo;
                         } else {
                             //信息返回不为正常值200，返回"添加失败"+msg.message+"请重试"
                             alert("移除失败"+msg.message+"请重试");

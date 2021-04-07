@@ -62,12 +62,12 @@
                 };
                 console.log(sendData);
                 $.ajax({
-                    type: "get",
+                    type: "post",
                     url: "<%=sendDataUrl%>", //后端输入
                     data: sendData,
                     datatype: "json",
                     success: function(msg) {
-                        if (msg.state == 200) {
+                        if (msg.status == 200) {
 
                             let addSuccess = document.getElementById('addSuccess');
                             let addSuccessInfo = '<div id="addSuccess"><p>添加成功</p> </div>';

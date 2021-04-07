@@ -65,9 +65,6 @@ body {
     width: 446px;
     margin-left: 50px;
     margin-top: 20px;
-    
-    
-
   }
   .roundRactangle2 {
     position: relative;
@@ -95,7 +92,7 @@ body {
 
   
 
-  #Submit {
+  button {
     border-radius: 10px;
     border: none;
     background-color: rgb(241, 243, 246);
@@ -109,7 +106,7 @@ body {
    
   }
 
-  #Submit p{
+  button p{
     font-size: 25px;
     font-family: "Microsoft YaHei";
     color: rgb(117, 117, 117);
