@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生登陆</title>
+    <meta name="description" content="基于区块链的学位学历认证管理系统">
+    <meta name="keywords" content="区块链 学位学历认证 文特链 学生登陆">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../html/css/logIn.css">
+    <link rel="stylesheet" href="../html/css/normalize.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="roundRactangle1">
+            <div class="formTitle">
+                请输入学生学号
+
+            </div>
+
+
+            <div class="roundRactangle2">
+                <p>学生学号<span style="margin-left: 8px;">|</span></p>
+                <input id="stuNumber" type="text" name="学号">
+            </div>
+           
+            <button id="Submit"><p>确定</p></button>
+            <div id="logInSuccess">
+                <!-- <p>查询成功</p>  -->
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/banner.js"></script>
+    <script src="js/jquery.js"></script>
+
+    <!-- 提交数据交服务器 -->
+    <script>
+        $(function() {
+            // 排除输入空值
+            $('#Submit').click(function() {
+                if ($('#stuNumber').val() == '') {
+                    alert('请输入学号');
+                    $('#stuNumber').focus();
+                    return;
+                } 
+                // 提交数据
+                var sendData = {
+                    "stuNumber": $('#stuNumber').val()
+                };
+
+                $.ajax({
+                    type: "post",
+                    url: "<%=schoolNumInputSendDataUrl%>", //后端输入
+                    data: sendData,
+                    datatype: "json",
+                    success: function(msg) {
+
+                        if (msg.status == 200) {
+                            //说明传入完成
+                            console.log(msg.data.name);
+                            // SetCookie("userid",msg.data.id);
+                            window.location.href = "schoolRemoke" + "?stuNumber=" + $('#stuNumber').val(); //登录成功，页面跳转到studentConfirmation.html
+                            // alert("欢迎:" + msg.data.name);
+                            let logInSuccess = document.getElementById('logInSuccess');
+                            let logInSuccessInfo = '<div id="logInSuccess"><p>查询成功</p> </div>';
+
+                            logInSuccess.innerHTML = logInSuccessInfo;
+
+                        } else {
+                            //信息返回不为正常值200，返回"添加失败"+msg.message+"请重试"
+                            alert("添加失败" + msg.message + "请重试");
+                        }
+
+                    },
+                    error: function(msg) {
+                        alert("登录失败，请重试");
+                    }
+                });
+            })
+        });
+    </script>
+</body>
+
+</html>
