@@ -96,7 +96,7 @@
                 <div class="submitSuccess" id="succeedregistering" style="display: none;">
                     <!-- <p>
                         注册成功，证书编号：
-                        <%=CertificateNo%>
+                        
                     </p> -->
                 </div>
                 <button id="submit"><p>注册</p></button>
@@ -132,7 +132,7 @@
                     datatype: Boolean,
                     success: function(msg) {
 
-                        if (msg.status == 200) {
+                        if (msg.state == 200) {
                             //说明传入完成
                             $('#succeedregistering').show()
                             let registeringSuccess = document.getElementById('succeedregistering');
@@ -145,11 +145,22 @@
                         } else {
                             //信息返回不为正常值200，返回"添加失败"+msg.message+"请重试"
                             alert("注册失败" + msg.message + "请重试");
+                            $('#succeedregistering').show()
+                            let registeringSuccess = document.getElementById('succeedregistering');
+                            let registeringSuccessInfo = '<div id="succeedregistering">'
+                                +' <p style="color:red;">注册失败，请重试</p> </div>';
+
+                            registeringSuccess.innerHTML = registeringSuccessInfo;
                         }
 
                     },
                     error: function(msg) {
                         alert("注册失败，请重试");
+                        $('#succeedregistering').show()
+                        let registeringSuccess = document.getElementById('succeedregistering');
+                        let registeringSuccessInfo = '<div id="succeedregistering">'
+                            +' <p style="color:red;">注册失败，请重试</p> </div>';
+                        registeringSuccess.innerHTML = registeringSuccessInfo;
                     }
                 });
 

@@ -109,7 +109,7 @@
             <div class="removeSuccess" id="succeedremoving" style="display: none;">
                 <!-- <p>
                     证书：
-                    <%=CertificateNo%>
+                    
                     移除成功！
                 </p> -->
             </div>
@@ -131,7 +131,7 @@
                     datatype: Boolean,
                     success: function(msg) {
 
-                        if (msg.status == 200) {
+                        if (msg.state == 200) {
                             //说明传入完成
                             $('#succeedremoving').show()
                             let removingSuccess = document.getElementById('succeedremoving');
@@ -140,14 +140,45 @@
                                 msg.no +
                                 ' 移除成功！</p> </div>';
                             removingSuccess.innerHTML = removingSuccessInfo;
+                        } else if (msg.state == 201) {
+
+                            $('#succeedremoving').show()
+                            let removingSuccess = document.getElementById('succeedremoving');
+                            let removingSuccessInfo = '<div id="succeedremoving">' +
+                                ' <p style="color: red;">证书：' +
+                                msg.no +
+                                ' 账号学历已被冻结，请勿重复操作！</p> </div>';
+                            removingSuccess.innerHTML = removingSuccessInfo;
                         } else {
                             //信息返回不为正常值200，返回"添加失败"+msg.message+"请重试"
+                            <<
+                            <<
+                            << < HEAD
+                            alert("移除失败" + msg.message + "请重试"); ===
+                            ===
+                            =
                             alert("移除失败" + msg.message + "请重试");
+                            $('#succeedremoving').show()
+                            let removingSuccess = document.getElementById('succeedremoving');
+                            let removingSuccessInfo = '<div id="succeedremoving">' +
+                                ' <p style="color: red;">证书：' +
+                                msg.no +
+                                ' 移除失败，请重试！</p> </div>';
+                            removingSuccess.innerHTML = removingSuccessInfo; >>>
+                            >>>
+                            > 68 c0ecb834ab25e3bbcaf952a48bf9f72c4d381b
                         }
 
                     },
                     error: function(msg) {
                         alert("移除失败，请重试");
+                        $('#succeedremoving').show()
+                        let removingSuccess = document.getElementById('succeedremoving');
+                        let removingSuccessInfo = '<div id="succeedremoving">' +
+                            ' <p style="color: red;">证书：' +
+                            msg.no +
+                            ' 移除失败，请重试！</p> </div>';
+                        removingSuccess.innerHTML = removingSuccessInfo;
                     }
                 });
 
