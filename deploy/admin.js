@@ -40,7 +40,7 @@ app.post('/admin', function(req, res) {
     console.log(req.body);
     // var result = constract.AddSchool("uestc", "asdfasdfasdfasdfasdfasdf");
     // console.log(result);
-    res.json(200, { state: 200 });
+    res.json(200, { state: 200, status: 200 });
 })
 
 var server = app.listen(8082, function() {

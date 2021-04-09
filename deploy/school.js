@@ -2,7 +2,8 @@ var express = require('express');
 var ejs = require('ejs');
 var path = require("path");
 var bodyParser = require('body-parser');
-var fs = require('fs')
+var fs = require('fs');
+var moment = require('moment');
 const { encrypt, decrypt } = require('./crypto');
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -78,6 +79,19 @@ function check(stdId, pwd) {
         }
     };
 }
+// 2018123401001 1234567890
+// 2017432109009 88888888
+function scCheck(stdId) {
+    if (stdId == "2018123401001") return check(stdId, "1234567890");
+    if (stdId == "2017432109009") return check(stdId, "88888888");
+    return check("", "");
+}
+
+function remokecf(cfNo, info, date) {
+    console.log(cfNo, info, date);
+    return { state: true };
+}
+
 
 function extend(target, source) {
     for (var obj in source) {
@@ -126,7 +140,7 @@ app.post('/studentCertificate', function(req, res) {
     var pwd = req.body.password
     var result = check(schoolId, pwd)
     if (result.state == true) {
-        var j = { state: 200 };
+        var j = { state: 200, status: 200 };
         // console.log(getCertificateNo(result.info));
         res.json(200, extend({ data: result.info }, j));
     } else {
@@ -141,7 +155,7 @@ app.get('/studentConfimation', function(req, res) {
     var pwd = req.query.password
     var result = check(schoolId, pwd)
     if (result.state == true) {
-        var j = { state: 200, studentConfirmationSendDataUrl: url + port + '/getCertificateNo?' + getrandom(), uid: "stuNumber=" + schoolId, p: "password=" + pwd };
+        var j = { state: 200, status: 200, studentConfirmationSendDataUrl: url + port + '/getCertificateNo?' + getrandom(), uid: "stuNumber=" + schoolId, p: "password=" + pwd, CertificateNo: '' };
         console.log(j.studentConfirmationSendDataUrl)
         console.log(extend(result.info, j));
         res.render("studentConfirmation", extend(result.info, j));
@@ -150,7 +164,7 @@ app.get('/studentConfimation', function(req, res) {
     }
 })
 
-app.get('/getCertificateNo', function(req, res) {
+app.post('/getCertificateNo', function(req, res) {
     console.log("getCertificateNo");
     console.log(req.query);
     var schoolId = req.query.stuNumber;
@@ -160,14 +174,68 @@ app.get('/getCertificateNo', function(req, res) {
     var result = getCertificateNo(info);
     console.log(result);
     if (result.state == "SUCCESS") {
-        var j = { state: 200 };
-
+        var j = { state: 200, status: 200 };
+        res.json(200, extend(result, j));
+    } else {
+        var j = { state: 201, status: 201 };
         res.json(200, extend(result, j));
     }
 })
 
 app.get('/domloadCertificate', function(req, res) {
 
+})
+
+app.get('/remokeLogin', function(req, res) {
+    res.render("schoolNumInput", {
+        schoolNumInputSendDataUrl: "remokeLogin"
+    });
+})
+
+app.post('/remokeLogin', function(req, res) {
+    console.log(req.body);
+    var stdId = req.body.stuNumber;
+    var result = scCheck(stdId);
+    if (result.state = true) {
+        var cfNo = getCertificateNo(result.info);
+        if (cfNo.state == "SUCCESS") {
+            var j = { state: 200, status: 200 };
+            res.json(200, extend(j, { data: result.info }))
+        }
+    }
+    var j = { state: 201, status: 201 };
+    res.json(200, extend(j))
+
+})
+
+app.get('/schoolRemoke', function(req, res) {
+    console.log(req.query);
+    var stdId = req.query.stuNumber;
+    var result = scCheck(stdId);
+    var cfNo = getCertificateNo(result.info);
+    console.log(extend(result.info, {
+        CertificateNo: cfNo.no,
+        freezeDate: moment().add(1, 'years').format('YYYY-MM-DD'),
+        schoolRemokeSendDataUrlUrl: "schoolRemoke?s=" + stdId
+    }))
+    res.render("schoolRemoke", extend(result.info, {
+        CertificateNo: cfNo.no,
+        freezeDate: moment().add(1, 'years').format('YYYY-MM-DD'),
+        schoolRemokeSendDataUrlUrl: "schoolRemoke?s=" + stdId
+    }));
+})
+
+app.post('/schoolRemoke', function(req, res) {
+    console.log(req.query);
+    var stdId = req.query.s;
+    var result = scCheck(stdId);
+    var cfNo = getCertificateNo(result.info);
+    var rResult = remokecf(cfNo.no, result.info, moment().add(1, 'years').format('YYYY-MM-DD'));
+    if (rResult.state == true) {
+        return res.json(200, { status: 200, state: 200, no: cfNo.no });
+    }
+
+    return res.json(200, { status: 201, state: 201 });
 })
 
 var server = app.listen(port, function() {

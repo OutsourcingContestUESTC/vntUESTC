@@ -9,7 +9,7 @@
     <meta name="description" content="基于区块链的学位学历认证管理系统">
     <meta name="keywords" content="区块链 学位学历认证 文特链 证书信息移除">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    
+
     <link rel="stylesheet" href="../html/css/normalize.css">
     <link rel="stylesheet" href="../html/css/schoolRemoke.css">
 </head>
@@ -18,7 +18,7 @@
     <div class="container">
         <div class="roundRectangle1">
             <div class="formTitle">
-                证书信息移除   
+                证书信息移除
             </div>
             <div class="information">
                 <div class="line">
@@ -57,7 +57,7 @@
                         </p>
                     </div>
                 </div>
-                
+
                 <div class="line">
                     <div class="roundRectangle2l" style="display: inline-block">
                         <p>
@@ -92,21 +92,20 @@
                     </div>
                 </div>
                 <div class="lastLine">
-                    
-                    <p >
+
+                    <p>
                         证书冻结日期
-                        <span style="margin-left: 8px;">|</span>
-                        今日 ——
+                        <span style="margin-left: 8px;">|</span> 今日 ——
                     </p>
                     <!-- 由于CSS定义无用，暂时写在html中 -->
                     <div class="roundRectangle2l " style="display: inline-block">
                         <p>
                             <%=freezeDate%>
                         </p>
-                    </div>    
+                    </div>
                 </div>
-            </div>   
-            <button  id="remove"><p>移除</p></button>
+            </div>
+            <button id="remove"><p>移除</p></button>
             <div class="removeSuccess" id="succeedremoving" style="display: none;">
                 <!-- <p>
                     证书：
@@ -135,16 +134,15 @@
                         if (msg.status == 200) {
                             //说明传入完成
                             $('#succeedremoving').show()
-                            let registeringSuccess = document.getElementById('succeedregistering');
-                            let removingSuccessInfo = '<div id="succeedremoving">'
-                                +' <p>证书：'
-                                +msg.no
-                                +' 移除成功！</p> </div>';
-                        
+                            let removingSuccess = document.getElementById('succeedremoving');
+                            let removingSuccessInfo = '<div id="succeedremoving">' +
+                                ' <p>证书：' +
+                                msg.no +
+                                ' 移除成功！</p> </div>';
                             removingSuccess.innerHTML = removingSuccessInfo;
                         } else {
                             //信息返回不为正常值200，返回"添加失败"+msg.message+"请重试"
-                            alert("移除失败"+msg.message+"请重试");
+                            alert("移除失败" + msg.message + "请重试");
                         }
 
                     },
@@ -152,12 +150,12 @@
                         alert("移除失败，请重试");
                     }
                 });
-             
+
             })
-            
+
         });
     </script>
-   
+
 </body>
 
 </html>
