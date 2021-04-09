@@ -33,7 +33,7 @@
             <button id="Submit"><p>添加</p></button>
 
             <div id="addSuccess">
-                 <!-- <p>添加成功</p>  -->
+                 <!-- <p>添加成功</p> -->
             </div>
         </div>
     </div>
@@ -77,11 +77,17 @@
                         } else {
                             //添加失败
                             alert("添加失败"+msg.message+"请重试");
+                            let addSuccess = document.getElementById('addSuccess');
+                            let addSuccessInfo = '<div id="addSuccess"><p style="color: red;">添加失败，请重试</p> </div>';
+                            addSuccess.innerHTML = addSuccessInfo;
                         }
 
                     },
                     error: function(msg) {
                         alert("添加失败，请重试");
+                        let addSuccess = document.getElementById('addSuccess');
+                        let addSuccessInfo = '<div id="addSuccess"><p style="color: red;">添加失败，请重试</p> </div>';
+                        addSuccess.innerHTML = addSuccessInfo;
                     }
                 });
             })

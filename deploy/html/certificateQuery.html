@@ -28,8 +28,9 @@
                
                 <div class="roundRactangle2">
                     <p id="beforeUploding"  >请上传证书文件</p>
-                    <p id="succeedUploding" style="color: rgb(104, 141, 98);margin-left: 170px;display: none;">上传成功</p>
+                    <p id="succeedUploding" style="color: rgb(104, 141, 98);display: none;">上传成功</p>
                     <p id="failUploding" style="color: red;display: none;">上传失败，请重试</p>
+                    <p id="accountRemoking" style="color: red;display: none;">该账户学历已被冻结</p>
                 </div>
             </div>
         </div>
@@ -77,18 +78,24 @@
                 complete: function() {
                     $('#beforeUploding').hide()
                 },
-                success: function(res) {
+                success: function(msg) {
                     // 判断是否接收成功
-                    if (res.state == 200) {
+                    if (msg.state == 200) {
                         $('#beforeUploding').hide()
                         $('#succeedUploding').show()
-                    }else{
+                    }else if(msg.state ==201){
+                        $('#beforeUploding').hide()
+                        $('#accountRemoking').show()
+                    } else{
+                        $('#beforeUploding').hide()
+                        $('#failUploding').show()
                         alert("文件上传失败"+msg.message+"请重试");
                     }
                 },
                 error: function(msg) {
                     $('#beforeUploding').hide()
                     $('#failUploding').show()
+                    alert("文件上传失败"+msg.message+"请重试");
                 }
             
             });

@@ -81,12 +81,19 @@
 
                         } else {
                             //信息返回不为正常值200，返回"添加失败"+msg.message+"请重试"
-                            alert("添加失败" + msg.message + "请重试");
+                            alert("登录失败" + msg.message + "请重试");
+                            let logInSuccess = document.getElementById('logInSuccess');
+                            let logInSuccessInfo = '<div id="logInSuccess"><p style="color: red;">登录失败，请重试</p> </div>';
+
+                            logInSuccess.innerHTML = logInSuccessInfo;
                         }
 
                     },
                     error: function(msg) {
                         alert("登录失败，请重试");
+                        let logInSuccess = document.getElementById('logInSuccess');
+                        let logInSuccessInfo = '<div id="logInSuccess"><p style="color: red;">登录失败，请重试</p> </div>';
+                        logInSuccess.innerHTML = logInSuccessInfo;
                     }
                 });
             })
