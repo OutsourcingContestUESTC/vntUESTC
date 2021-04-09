@@ -135,7 +135,7 @@
                         if (msg.state == 200) {
                             //说明传入完成
                             $('#succeedremoving').show()
-                            let registeringSuccess = document.getElementById('succeedregistering');
+                            let removingSuccess = document.getElementById('succeedremoving');
                             let removingSuccessInfo = '<div id="succeedremoving">'
                                 +' <p>证书：'
                                 +msg.no
@@ -144,7 +144,7 @@
                         }else if(msg.state ==201){
                             
                             $('#succeedremoving').show()
-                            let registeringSuccess = document.getElementById('succeedregistering');
+                            let removingSuccess = document.getElementById('succeedremoving');
                             let removingSuccessInfo = '<div id="succeedremoving">'
                                 +' <p style="color: red;">证书：'
                                 +msg.no
@@ -155,7 +155,7 @@
                             //信息返回不为正常值200，返回"添加失败"+msg.message+"请重试"
                             alert("移除失败"+msg.message+"请重试");
                             $('#succeedremoving').show()
-                            let registeringSuccess = document.getElementById('succeedregistering');
+                            let removingSuccess = document.getElementById('succeedremoving');
                             let removingSuccessInfo = '<div id="succeedremoving">'
                                 +' <p style="color: red;">证书：'
                                 +msg.no
@@ -167,7 +167,7 @@
                     error: function(msg) {
                         alert("移除失败，请重试");
                         $('#succeedremoving').show()
-                        let registeringSuccess = document.getElementById('succeedregistering');
+                        let removingSuccess = document.getElementById('succeedremoving');
                         let removingSuccessInfo = '<div id="succeedremoving">'
                             +' <p style="color: red;">证书：'
                             +msg.no
