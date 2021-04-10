@@ -20,9 +20,9 @@ vnt.personal.unlockAccount(from, pass);
 // vnt.personal.unlockAccount(from2, pass2)
 
 //定义代码路径
-var codeFile = "./contract/opuput/unknow.compress";
+var codeFile = "./contract/opuput/$stucontract.compress";
 //定义abi路径
-var abiFile = "./contract/opuput/unknow.json";
+var abiFile = "./contract/opuput/$stucontract.json";
 //读取abi数据
 var wasmabi = fs.readFileSync(abiFile);
 //将abi数据解析成json结构
@@ -67,7 +67,7 @@ function AddSchool(schoolIn, schoolPk) {
     // 生成合约实例
     var contract = vnt.core.contract(abi).at(contractAddr)
 
-    contract.transfer.sendTransaction(
+    contract.SchoolRegister.sendTransaction(
         schoolIn, schoolPk, { from: vnt.core },
         function(err, txid) {
             if (err) {
