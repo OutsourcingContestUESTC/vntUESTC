@@ -13,7 +13,8 @@ app.use(express.static(path.join(__dirname, '/html')));
 // app.use('/css', express.static('/html/css'));
 // app.use('/images', express.static('/html/images'));
 // app.use('/js', express.static('/html/js'));
-
+var url = 'http://127.0.0.1:';
+var port = 8084;
 
 
 app.set('views', path.join(__dirname, './html'));
@@ -29,7 +30,7 @@ app.get('/test1', function(req, res) {
 app.get('/admin', function(req, res) {
     console.log("getAdminHtml");
     res.render("adminAdd.html", {
-        sendDataUrl: 'http://127.0.0.1:8082/admin',
+        sendDataUrl: url + port + '/admin',
         result: ''
     });
 })
@@ -43,7 +44,7 @@ app.post('/admin', function(req, res) {
     res.json(200, { state: 200, status: 200 });
 })
 
-var server = app.listen(8082, function() {
+var server = app.listen(port, function() {
     // constract.deployWasmContract();
     // var result = constract.AddSchool("uestc", "asdfasdfasdfasdfasdfasdf");
     // console.log(result);
