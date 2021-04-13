@@ -176,11 +176,13 @@ app.post('/getCertificateNo', function(req, res) {
     console.log(info);
     var result = getCertificateNo(info);
     console.log(result);
-    if (result.state == "SUCCESS") {
+    if (result.state == "SUCCESS" || result.state == "PASS") {
         var j = { state: 200, status: 200 };
         res.json(200, extend(result, j));
     } else {
-        var j = { state: 201, status: 201 };
+        var msg = " 发生错误 ";
+        if (result.state == "REMOKE") mes = " 该证书被冻结 "
+        var j = { state: 201, status: 201, message: msg };
         res.json(200, extend(result, j));
     }
 })
