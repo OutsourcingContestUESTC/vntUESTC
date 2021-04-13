@@ -100,16 +100,16 @@
                     </p> -->
                 </div>
                 <button id="submit"><p>注册</p></button>
-                
-                <a href="<%=studentConfirmationSendDataUrl%>&<%=uid%>&<%=p%>/download" download="学位证明.cf">
+
+                <a href="<%=studentConfirmationDownloadUrl%>&<%=uid%>&<%=p%>" method="GET" download="学位证明.cf">
                     <button id="download">
                         <p>
                             下载
                         </p>
                     </button>
                 </a>
-                
-                
+
+
             </div>
 
 
@@ -136,10 +136,10 @@
                             //说明传入完成
                             $('#succeedregistering').show()
                             let registeringSuccess = document.getElementById('succeedregistering');
-                            let registeringSuccessInfo = '<div id="succeedregistering">'
-                                +' <p>注册成功，证书编号：'
-                                +msg.no
-                                +'</p> </div>';
+                            let registeringSuccessInfo = '<div id="succeedregistering">' +
+                                ' <p>注册成功，证书编号：' +
+                                msg.no +
+                                '</p> </div>';
 
                             registeringSuccess.innerHTML = registeringSuccessInfo;
                         } else {
@@ -147,8 +147,8 @@
                             alert("注册失败" + msg.message + "请重试");
                             $('#succeedregistering').show()
                             let registeringSuccess = document.getElementById('succeedregistering');
-                            let registeringSuccessInfo = '<div id="succeedregistering">'
-                                +' <p style="color:red;">注册失败，请重试</p> </div>';
+                            let registeringSuccessInfo = '<div id="succeedregistering">' +
+                                ' <p style="color:red;">注册失败，请重试</p> </div>';
 
                             registeringSuccess.innerHTML = registeringSuccessInfo;
                         }
@@ -158,8 +158,8 @@
                         alert("注册失败，请重试");
                         $('#succeedregistering').show()
                         let registeringSuccess = document.getElementById('succeedregistering');
-                        let registeringSuccessInfo = '<div id="succeedregistering">'
-                            +' <p style="color:red;">注册失败，请重试</p> </div>';
+                        let registeringSuccessInfo = '<div id="succeedregistering">' +
+                            ' <p style="color:red;">注册失败，请重试</p> </div>';
                         registeringSuccess.innerHTML = registeringSuccessInfo;
                     }
                 });

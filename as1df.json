@@ -1,0 +1,18 @@
+{
+    "ID": {
+        "state": "SUCCESS",
+        "no": "123456",
+        "total": "SUCCESS:123456"
+    },
+    "info": {
+        "name": "王小明",
+        "from": "北京",
+        "sex": "男",
+        "nationality": "汉",
+        "IDNumber": "444444444444444",
+        "studentNumber": "2018123401001",
+        "major": "计算机系统与技术",
+        "school": "华夏人民大学",
+        "graduationCertificateNo": "1145141919"
+    }
+}

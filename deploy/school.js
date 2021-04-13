@@ -155,7 +155,7 @@ app.get('/studentConfimation', function(req, res) {
     var pwd = req.query.password
     var result = check(schoolId, pwd)
     if (result.state == true) {
-        var j = { state: 200, status: 200, studentConfirmationSendDataUrl: url + port + '/getCertificateNo?' + getrandom(), uid: "stuNumber=" + schoolId, p: "password=" + pwd, CertificateNo: '' };
+        var j = { state: 200, status: 200, studentConfirmationSendDataUrl: url + port + '/getCertificateNo?' + getrandom(), uid: "stuNumber=" + schoolId, p: "password=" + pwd, CertificateNo: '', studentConfirmationDownloadUrl: url + port + '/downloadCf?' + getrandom() };
         console.log(j.studentConfirmationSendDataUrl)
         console.log(extend(result.info, j));
         res.render("studentConfirmation", extend(result.info, j));
@@ -182,8 +182,22 @@ app.post('/getCertificateNo', function(req, res) {
     }
 })
 
-app.get('/domloadCertificate', function(req, res) {
-
+app.get('/downloadCf', function(req, res) {
+    console.log(req.query);
+    var id = req.query.stuNumber;
+    var pw = req.query.password;
+    var info = check(id, pw).info;
+    var no = getCertificateNo(info).no;
+    var data = { ID: no, info: info };
+    var path = "./data/" + id + ".cf";
+    storeData(data, path);
+    res.download(path, err => {
+        if (err) {
+            res.send("上传失败！");
+        } else {
+            console.log("上传成功！");
+        }
+    });
 })
 
 app.get('/remokeLogin', function(req, res) {
