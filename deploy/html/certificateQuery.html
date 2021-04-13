@@ -9,7 +9,7 @@
     <meta name="description" content="基于区块链的学位学历认证管理系统">
     <meta name="keywords" content="区块链 学位学历认证 文特链 证书上传">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    
+
     <link rel="stylesheet" href="../html/css/normalize.css">
     <link rel="stylesheet" href="../html/css/certificateQuery.css">
 </head>
@@ -25,11 +25,11 @@
             <button id="select"><p>文件选择</p></button>
             <button id="Submit"><p>上传</p></button>
             <div id="logInSuccess">
-               
+
                 <div class="roundRactangle2">
-                    <p id="beforeUploding"  >请上传证书文件</p>
-                    <p id="succeedUploding" style="color: rgb(104, 141, 98);display: none;">上传成功</p>
-                    <p id="failUploding" style="color: red;display: none;">上传失败，请重试</p>
+                    <p id="beforeUploding">请上传证书文件</p>
+                    <p id="succeedUploding" style="color: rgb(104, 141, 98);display: none;">验证通过</p>
+                    <p id="failUploding" style="color: red;display: none;">验证失败，请重试</p>
                     <p id="accountRemoking" style="color: red;display: none;">该账户学历已被冻结</p>
                 </div>
             </div>
@@ -39,70 +39,70 @@
 
     <script src="js/banner.js"></script>
     <script src="js/jquery.js"></script>
-    
+
     </script> -->
     <!-- 上传文件 -->
     <script>
-    $(function() {
-        $('#select').click(function() {
-            $('#ipt').click(); // 模拟文件上传按钮点击操作
+        $(function() {
+            $('#select').click(function() {
+                $('#ipt').click(); // 模拟文件上传按钮点击操作
 
-        });
-        $('#Submit').on('click', function() {
-            // 获取文件列表
-            var file = $('#ipt')[0].files;
-            // 判断是否选择了文件
-            if (file.length <= 0) {
-                return alert('请上传文件')
-            }
-            // 创建formdata
-            var fd = new FormData();
-            // 向formdata中传入数据
-            // fd.append()
-            // file是一个伪数组
-            fd.append('certificateFile', file[0]);
-            //https://developer.mozilla.org/en-US/docs/Web/API/FormData/append
-            //formData.append(name, value);
-            // 用ajax传送数据
-            $.ajax({
-                type: 'post',
-                url: "<%=certificateQuerySendDataUrl%>",//上传数据目标网址
-                // 数据不需要编码
-                contentType: false,
-                // 数据对象不需要转换成键值对格式
-                processData: false,
-                data: fd,
-                beforeSend: function() {
-                    $('#beforeUploding').show()
-                },
-                complete: function() {
-                    $('#beforeUploding').hide()
-                },
-                success: function(msg) {
-                    // 判断是否接收成功
-                    if (msg.state == 200) {
+            });
+            $('#Submit').on('click', function() {
+                // 获取文件列表
+                var file = $('#ipt')[0].files;
+                // 判断是否选择了文件
+                if (file.length <= 0) {
+                    return alert('请上传文件')
+                }
+                // 创建formdata
+                var fd = new FormData();
+                // 向formdata中传入数据
+                // fd.append()
+                // file是一个伪数组
+                fd.append('certificateFile', file[0]);
+                //https://developer.mozilla.org/en-US/docs/Web/API/FormData/append
+                //formData.append(name, value);
+                // 用ajax传送数据
+                $.ajax({
+                    type: 'post',
+                    url: "<%=certificateQuerySendDataUrl%>", //上传数据目标网址
+                    // 数据不需要编码
+                    contentType: false,
+                    // 数据对象不需要转换成键值对格式
+                    processData: false,
+                    data: fd,
+                    beforeSend: function() {
+                        $('#beforeUploding').show()
+                    },
+                    complete: function() {
                         $('#beforeUploding').hide()
-                        $('#succeedUploding').show()
-                    }else if(msg.state ==201){
-                        $('#beforeUploding').hide()
-                        $('#accountRemoking').show()
-                    } else{
+                    },
+                    success: function(msg) {
+                        // 判断是否接收成功
+                        if (msg.state == 200) {
+                            $('#beforeUploding').hide()
+                            $('#succeedUploding').show()
+                        } else if (msg.state == 201) {
+                            $('#beforeUploding').hide()
+                            $('#accountRemoking').show()
+                        } else {
+                            $('#beforeUploding').hide()
+                            $('#failUploding').show()
+                            alert("文件上传失败" + msg.message + "请重试");
+                        }
+                    },
+                    error: function(msg) {
                         $('#beforeUploding').hide()
                         $('#failUploding').show()
-                        alert("文件上传失败"+msg.message+"请重试");
+                        alert("文件上传失败" + msg.message + "请重试");
                     }
-                },
-                error: function(msg) {
-                    $('#beforeUploding').hide()
-                    $('#failUploding').show()
-                    alert("文件上传失败"+msg.message+"请重试");
-                }
-            
-            });
-            
-        })
-    
-    });
+
+                });
+
+            })
+
+        });
     </script>
 </body>
 

@@ -20,6 +20,8 @@ var port = 8081;
 app.set('views', path.join(__dirname, './html'));
 app.engine('html', require('ejs').__express);
 app.set('view engine', 'html');
+// 通过配置multer的dest属性， 将文件储存在项目下的tmp文件中
+app.use(multer({ dest: './tmp/' }).any())
 
 const loadData = (path) => {
     try {
@@ -278,8 +280,8 @@ app.post('/getFile', function(req, res) {
             console.log(j);
             console.log(j.info.studentNumber)
             if (cfVerification(j))
-                res.json(200, { status: 200 });
-            else res.json(200, { status: 201 });
+                res.json(200, { state: 200 });
+            else res.json(200, { state: 201 });
         }
     })
 })

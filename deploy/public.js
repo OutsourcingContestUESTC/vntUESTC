@@ -69,8 +69,8 @@ app.post('/getFile', function(req, res) {
             console.log(j);
             console.log(j.info.studentNumber)
             if (cfVerification(j))
-                res.json(200, { status: 200 });
-            else res.json(200, { status: 201 });
+                res.json(200, { state: 200 });
+            else res.json(200, { state: 201 });
         }
     })
 })
