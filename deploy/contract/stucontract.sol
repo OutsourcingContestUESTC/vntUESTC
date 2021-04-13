@@ -20,13 +20,14 @@ contract stucontract {
     mapping(string=>uint64) CfData_r;
     mapping (address=>AdminStruct) adm;
     address public owner;
-    string var1;
     string var0="ERROR";
+    string var1="REMOKE SUCCESS";
     string var2="REMOKE";
     string var3="PASS" ;
     string var4="SUCCESS";
+    uint public time;
     mapping(string=>string) ScPkMap;
-    uint cfSize=0;
+    uint64 cfSize=0;
 
     event e(address addr,string message);
 
@@ -70,22 +71,66 @@ contract stucontract {
         return CfData_r[InfoH];
         else
         emit e(msg.sender,var0);
-        return -1;
+        return 0;
     }
     
     function SchoolExist(string memory schooln) public returns (bool) {
         return StringhashCompareInternal(ScPkMap[schooln],"");
     }
 
- /*  function SchoolRegister(string storage SchoolIn,string storage SchoolPk) public returns (bool) {       
-    
+    function SchoolRegister(string memory SchoolIn,string memory SchoolPk) public admin returns (bool) {       
+        if(SchoolExist(SchoolIn)){ 
+            ScPkMap[SchoolIn]=SchoolPk;
+            return true;}
+        else{
+             emit e(msg.sender,var0);      
+             return false;
+    }}
+
+    function getDate() internal returns(uint){
+        time = now;
+        return(time);
     }
 
-    function RegisterFunc(string storage scname,string storage infohash) public returns (bool) {
-    
+    function RegisterFunc(string memory scname,string memory infohash) public returns (string memory _state,uint64 _id) {
+        string memory scpk;
+        uint tim=getDate();
+        scpk=ScPkMap[scname];
+        if(SchoolConfirm(scname,scpk)){
+            uint64 id=CertificateExist(infohash);
+            if(id==0){
+                id=cfSize;cfSize++;
+            }
+            else{
+                if(StringhashCompareInternal(CfData[id].State,var3))
+                return (var3,id);
+                else if(tim<CfData[id].Date) return (var2,id);
+                {
+                    CfData[id].Date=tim;CfData[id].State=var3;return (var4,id);
+                }
+            }
+            CfData[id].InfoHash=infohash;
+            CfData[id].State=var3;
+            CfData[id].Date=tim;
+            CfData_r[infohash]=id;
+            return(var4,id);
+        }  
+        return (var0,0);
     }
 
-    function RemokeFunc(string storage schoolname,uint64 id,string storage infohash,uint date)  public returns (bool) {
-    
-    }*/
+    function RemokeFunc(string memory schoolname,uint64 _id,string memory _infohash)  public returns (bool) {
+        string memory _scpk;
+        uint  _date=getDate();
+        _scpk=ScPkMap[schoolname];
+        if(SchoolConfirm(schoolname,_scpk)){
+            if(StringhashCompareInternal(CfData[_id].InfoHash,_infohash)){
+                CfData[_id].State=var2;
+                CfData[_id].Date=_date;
+                emit e(msg.sender,var1);
+                return true;
+            }
+        }
+        emit e(msg.sender,var0);
+        return false;
+    }
 }
