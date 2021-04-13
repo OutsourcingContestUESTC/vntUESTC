@@ -272,9 +272,9 @@ app.post('/getFile', function(req, res) {
         if (err) {
             res.send(err)
         } else {
-            filePath = '.\\' + filePath;
+            filePath = './' + filePath;
             console.log(filePath);
-            var data = loadData("./" + filePath);
+            var data = loadData(filePath);
             console.log(data);
             var j = JSON.parse(data);
             console.log(j);
