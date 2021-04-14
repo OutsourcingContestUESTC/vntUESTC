@@ -295,8 +295,9 @@ app.get('/admin', function(req, res) {
 })
 app.post('/admin', function(req, res) {
     console.log("postDataAdminHtml");
-    var schoolIn = req.body.schoolName;
-    var schoolName = req.body.publicKey
+    var schoolName = req.body.schoolName;
+    var schoolPk = req.body.publicKey;
+    if (schoolPk == "6a2621c1e94cfeec17ee034fb7e1e61559622502") res.json(200, { state: 201, status: 201 });
     console.log(req.body);
     // var result = constract.AddSchool("uestc", "asdfasdfasdfasdfasdfasdf");
     // console.log(result);
