@@ -33,7 +33,7 @@ const loadData = (path) => {
 }
 
 function cfVerification(info) {
-    if (info.name == "王小明")
+    if (info.info.name == "王小明")
         return true;
     return false;
 }
