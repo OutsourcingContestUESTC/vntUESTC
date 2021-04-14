@@ -99,7 +99,7 @@ function scCheck(stdId) {
     if (stdId == "2017432109009") return check(stdId, "88888888");
     return check("", "");
 }
-var flag = { cfNo: "", f = true };
+var flag = { cfNo: "", f: true };
 
 function remokecf(cfNo, info, date) {
     console.log(cfNo, info, date);
