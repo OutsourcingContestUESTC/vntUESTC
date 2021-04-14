@@ -33,7 +33,9 @@ const loadData = (path) => {
 }
 
 function cfVerification(info) {
-    return true;
+    if (info.name == "王小明")
+        return true;
+    return false;
 }
 
 const storeData = (data, path) => {
@@ -97,9 +99,12 @@ function scCheck(stdId) {
     if (stdId == "2017432109009") return check(stdId, "88888888");
     return check("", "");
 }
+var flag = { cfNo: "", f = true };
 
 function remokecf(cfNo, info, date) {
     console.log(cfNo, info, date);
+    flag.cfNo = cfNo;
+    flag.f = false;
     return { state: true };
 }
 
@@ -119,7 +124,12 @@ function getrandom() {
 function getCertificateNo(info) {
     var infoStr = JSON.stringify(info);
     // 访问区块链
-    var result = "SUCCESS:123456"
+    var result = ""
+    if (flag.f == false) {
+        result = "REMOKE:1";
+        flag.f = true;
+    } else
+        result = "SUCCESS:1"
     var split = result.split(":")
     return {
         state: split[0],
