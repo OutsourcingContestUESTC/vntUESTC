@@ -193,7 +193,7 @@ app.post('/getCertificateNo', function(req, res) {
         res.json(200, extend(result, j));
     } else {
         var msg = " 发生错误 ";
-        if (result.state == "REMOKE") mes = " 该证书被冻结 "
+        if (result.state == "REMOKE") msg = " 该证书被冻结 "
         var j = { state: 201, status: 201, message: msg };
         res.json(200, extend(result, j));
     }
