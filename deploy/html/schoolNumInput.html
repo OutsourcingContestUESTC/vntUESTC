@@ -29,7 +29,7 @@
            
             <button id="Submit"><p>确定</p></button>
             <div id="logInSuccess">
-                <!-- <p>查询成功</p>  -->
+                <!-- 查询成功  -->
             </div>
         </div>
     </div>
@@ -67,20 +67,20 @@
                             window.location.href = "schoolRemoke" + "?stuNumber=" + $('#stuNumber').val(); //登录成功，页面跳转到studentConfirmation.html
                             // alert("欢迎:" + msg.data.name);
                             let logInSuccess = document.getElementById('logInSuccess');
-                            let logInSuccessInfo = '<div id="logInSuccess"><p>查询成功</p> </div>';
+                            let logInSuccessInfo = '<div id="logInSuccess" >查询成功 </div>';
 
                             logInSuccess.innerHTML = logInSuccessInfo;
 
                         }else if(msg.state == 201){
                             let logInSuccess = document.getElementById('logInSuccess');
-                            let logInSuccessInfo = '<div id="logInSuccess"><p style="color: red;">该账号学历已被冻结</p> </div>';
+                            let logInSuccessInfo = '<div id="logInSuccess" style="color: #950000;">该账号学历已被冻结 </div>';
                             logInSuccess.innerHTML = logInSuccessInfo;
                         }
                          else {
                             //信息返回不为正常值200，返回"添加失败"+msg.message+"请重试"
                             alert("查询失败" + msg.message + "请重试");
                             let logInSuccess = document.getElementById('logInSuccess');
-                            let logInSuccessInfo = '<div id="logInSuccess"><p style="color: red;">查询失败，请重试</p> </div>';
+                            let logInSuccessInfo = '<div id="logInSuccess" style="color: #950000;">查询失败，请重试 </div>';
                             logInSuccess.innerHTML = logInSuccessInfo;
                         }
 
@@ -88,7 +88,7 @@
                     error: function(msg) {
                         alert("查询失败，请重试");
                         let logInSuccess = document.getElementById('logInSuccess');
-                        let logInSuccessInfo = '<div id="logInSuccess"><p style="color: red;">查询失败，请重试</p> </div>';
+                        let logInSuccessInfo = '<div id="logInSuccess" style="color: #950000;">查询失败，请重试 </div>';
                         logInSuccess.innerHTML = logInSuccessInfo;
                     }
                 });

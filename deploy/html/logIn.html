@@ -32,7 +32,7 @@
             </div>
             <button id="Submit"><p>Login</p></button>
             <div id="logInSuccess">
-                <!-- <p>登录成功</p>  -->
+                <!-- 登录成功 -->
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@
                             window.location.href = "studentConfimation" + "?stuNumber=" + $('#stuNumber').val() + "&password=" + $('#password').val(); //登录成功，页面跳转到studentConfirmation.html
                             alert("欢迎:" + msg.data.name);
                             let logInSuccess = document.getElementById('logInSuccess');
-                            let logInSuccessInfo = '<div id="logInSuccess"><p>登录成功</p> </div>';
+                            let logInSuccessInfo = '<div id="logInSuccess">登录成功 </div>';
 
                             logInSuccess.innerHTML = logInSuccessInfo;
 
@@ -83,7 +83,7 @@
                             //信息返回不为正常值200，返回"添加失败"+msg.message+"请重试"
                             alert("登录失败" + msg.message + "请重试");
                             let logInSuccess = document.getElementById('logInSuccess');
-                            let logInSuccessInfo = '<div id="logInSuccess"><p style="color: red;">登录失败，请重试</p> </div>';
+                            let logInSuccessInfo = '<div id="logInSuccess" style="color: #950000;">登录失败，请重试 </div>';
 
                             logInSuccess.innerHTML = logInSuccessInfo;
                         }
@@ -92,7 +92,7 @@
                     error: function(msg) {
                         alert("登录失败，请重试");
                         let logInSuccess = document.getElementById('logInSuccess');
-                        let logInSuccessInfo = '<div id="logInSuccess"><p style="color: red;">登录失败，请重试</p> </div>';
+                        let logInSuccessInfo = '<div id="logInSuccess" style="color: #950000;">登录失败，请重试 </div>';
                         logInSuccess.innerHTML = logInSuccessInfo;
                     }
                 });

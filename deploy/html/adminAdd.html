@@ -33,7 +33,11 @@
             <button id="Submit"><p>添加</p></button>
 
             <div id="addSuccess">
+<<<<<<< HEAD
+                  添加成功
+=======
                 <!-- <p>添加成功</p> -->
+>>>>>>> f5ee66ed2cf9a88dc53db8b4eac6a61c48a3a233
             </div>
         </div>
     </div>
@@ -70,7 +74,7 @@
                         if (msg.state == 200) {
 
                             let addSuccess = document.getElementById('addSuccess');
-                            let addSuccessInfo = '<div id="addSuccess"><p>添加成功</p> </div>';
+                            let addSuccessInfo = '<div id="addSuccess">添加成功 </div>';
 
                             addSuccess.innerHTML = addSuccessInfo;
 
@@ -78,7 +82,7 @@
                             //添加失败
                             //alert("添加失败"+msg.message+"请重试");
                             let addSuccess = document.getElementById('addSuccess');
-                            let addSuccessInfo = '<div id="addSuccess"><p style="color: red;">添加失败，请重试</p> </div>';
+                            let addSuccessInfo = '<div id="addSuccess" style="color: #950000;">添加失败，请重试 </div>';
                             addSuccess.innerHTML = addSuccessInfo;
                         }
 
@@ -86,7 +90,7 @@
                     error: function(msg) {
                         alert("添加失败，请重试");
                         let addSuccess = document.getElementById('addSuccess');
-                        let addSuccessInfo = '<div id="addSuccess"><p style="color: red;">添加失败，请重试</p> </div>';
+                        let addSuccessInfo = '<div id="addSuccess" style="color: #950000;">添加失败，请重试</div>';
                         addSuccess.innerHTML = addSuccessInfo;
                     }
                 });
