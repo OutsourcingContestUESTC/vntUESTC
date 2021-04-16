@@ -31,10 +31,7 @@
                     <p id="succeedUploding" style="color: rgb(104, 141, 98);display: none;">上传成功</p>
                     <p id="failUploding" style="color: #950000;display: none;">上传失败，请重试</p>
                     <p id="accountRemoking" style="color: #950000;display:none">该账户学历已被冻结</p>
-                    <p id="beforeUploding">请上传证书文件</p>
-                    <p id="succeedUploding" style="color: rgb(104, 141, 98);display: none;">验证通过</p>
-                    <p id="failUploding" style="color: red;display: none;">上传失败，请重试</p>
-                    <p id="accountRemoking" style="color: red;display: none;">验证失败</p>
+                    
                 </div>
 
             </div>
@@ -89,63 +86,23 @@
                         // 判断是否接收成功
                         if (msg.state == 200) {
                             $('#beforeUploding').hide()
-
                             $('#succeedUploding').show()
-                        } else if (msg.state == 201) {}
-                    }
-                });
-                $('#Submit').on('click', function() {
-                    // 获取文件列表
-                    var file = $('#ipt')[0].files;
-                    // 判断是否选择了文件
-                    if (file.length <= 0) {
-                        return alert('请上传文件')
-                    }
-                    // 创建formdata
-                    var fd = new FormData();
-                    // 向formdata中传入数据
-                    // fd.append()
-                    // file是一个伪数组
-                    fd.append('certificateFile', file[0]);
-                    //https://developer.mozilla.org/en-US/docs/Web/API/FormData/append
-                    //formData.append(name, value);
-                    // 用ajax传送数据
-                    $.ajax({
-                        type: 'post',
-                        url: "<%=certificateQuerySendDataUrl%>", //上传数据目标网址
-                        // 数据不需要编码
-                        contentType: false,
-                        // 数据对象不需要转换成键值对格式
-                        processData: false,
-                        data: fd,
-                        beforeSend: function() {
-                            $('#beforeUploding').show()
-                        },
-                        complete: function() {
+                        } else if (msg.state == 201) {
                             $('#beforeUploding').hide()
-                        },
-                        success: function(msg) {
-                            // 判断是否接收成功
-                            if (msg.state == 200) {
-                                $('#beforeUploding').hide()
-                                $('#succeedUploding').show()
-                            } else if (msg.state == 201) {
-                                $('#beforeUploding').hide()
-                                $('#accountRemoking').show()
-                            } else {
-                                $('#beforeUploding').hide()
-                                $('#failUploding').show()
-                                alert("文件上传失败" + msg.message + "请重试");
-                            }
-                        },
-                        error: function(msg) {
+                            $('#accountRemoking').show()
+                        } else {
                             $('#beforeUploding').hide()
                             $('#failUploding').show()
                             alert("文件上传失败" + msg.message + "请重试");
                         }
-                    })
+                    },
+                    error: function(msg) {
+                        $('#beforeUploding').hide()
+                        $('#failUploding').show()
+                        alert("文件上传失败" + msg.message + "请重试");
+                    }
                 })
-            })
+            })  
         })
     </script>
 </body>
