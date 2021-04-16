@@ -123,7 +123,7 @@ input {
     z-index: 10;
 }
 
-#addSuccess p {
+#addSuccess  {
     font-size: 25px;
     font-family: "Microsoft YaHei";
     color: rgb(104, 141, 98);
@@ -134,8 +134,5 @@ input {
     -moz-transform: matrix( 0.80000001192093, 0, 0, 0.8, 0, 0);
     -webkit-transform: matrix( 0.80000001192093, 0, 0, 0.8, 0, 0);
     -ms-transform: matrix( 0.80000001192093, 0, 0, 0.8, 0, 0);
-    position: absolute;
-    left: 50%;
-    margin-left: -50px;
-    z-index: 11;
+    margin-top: 20px;
 }
