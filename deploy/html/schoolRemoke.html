@@ -104,15 +104,9 @@
                         </p>
                     </div>
                 </div>
-<<<<<<< HEAD
             </div>   
             <button  id="remove"><p>移除</p></button>
             <div class="removeSuccess" id="succeedremoving" style="display: none">
-=======
-            </div>
-            <button id="remove"><p>移除</p></button>
-            <div class="removeSuccess" id="succeedremoving" style="display: none;">
->>>>>>> f5ee66ed2cf9a88dc53db8b4eac6a61c48a3a233
                 <!-- <p>
                     证书：
                     
@@ -150,17 +144,10 @@
 
                             $('#succeedremoving').show()
                             let removingSuccess = document.getElementById('succeedremoving');
-<<<<<<< HEAD
                             let removingSuccessInfo = '<div id="succeedremoving">'
                                 +' <p style="color: #950000;">证书：'
                                 +msg.no
                                 +' 账号学历已被冻结，请勿重复操作！</p> </div>';
-=======
-                            let removingSuccessInfo = '<div id="succeedremoving">' +
-                                ' <p style="color: red;">证书：' +
-                                msg.no +
-                                ' 账号学历已被冻结，请勿重复操作！</p> </div>';
->>>>>>> f5ee66ed2cf9a88dc53db8b4eac6a61c48a3a233
                             removingSuccess.innerHTML = removingSuccessInfo;
                         } else {
                             //信息返回不为正常值200，返回"添加失败"+msg.message+"请重试"
@@ -168,17 +155,10 @@
                             alert("移除失败" + msg.message + "请重试");
                             $('#succeedremoving').show()
                             let removingSuccess = document.getElementById('succeedremoving');
-<<<<<<< HEAD
                             let removingSuccessInfo = '<div id="succeedremoving">'
                                 +' <p style="color: #950000;">证书：'
                                 +msg.no
                                 +' 移除失败，请重试！</p> </div>';
-=======
-                            let removingSuccessInfo = '<div id="succeedremoving">' +
-                                ' <p style="color: red;">证书：' +
-                                msg.no +
-                                ' 移除失败，请重试！</p> </div>';
->>>>>>> f5ee66ed2cf9a88dc53db8b4eac6a61c48a3a233
                             removingSuccess.innerHTML = removingSuccessInfo;
                         }
 
@@ -187,17 +167,10 @@
                         alert("移除失败，请重试");
                         $('#succeedremoving').show()
                         let removingSuccess = document.getElementById('succeedremoving');
-<<<<<<< HEAD
                         let removingSuccessInfo = '<div id="succeedremoving">'
                             +' <p style="color: #950000;">证书：'
                             +msg.no
                             +' 移除失败，请重试！</p> </div>';
-=======
-                        let removingSuccessInfo = '<div id="succeedremoving">' +
-                            ' <p style="color: red;">证书：' +
-                            msg.no +
-                            ' 移除失败，请重试！</p> </div>';
->>>>>>> f5ee66ed2cf9a88dc53db8b4eac6a61c48a3a233
                         removingSuccess.innerHTML = removingSuccessInfo;
                     }
                 });
