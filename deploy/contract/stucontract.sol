@@ -84,8 +84,8 @@ contract stucontract {
         return addressCompareInternal(ScPkMap[schooln],_a);
     }
 
-    function SchoolRegister(string memory SchoolIn) public admin returns (bool) {       
-        address SchoolPk=msg.sender;
+    function SchoolRegister(string memory SchoolIn,address SchoolPk) public admin returns (bool) {      
+
         if(SchoolExist(SchoolIn)){ 
             ScPkMap[SchoolIn]=SchoolPk;
             return true;}
@@ -95,20 +95,16 @@ contract stucontract {
     }}
 
     function RegisterFunc(string memory scname,string memory infohash,uint256 now_) public returns (string memory _state,uint64 _id) {
-        address scpk;
-        scpk=msg.sender;
-        if(SchoolConfirm(scname,scpk)){
+        address _scpk_r=msg.sender;
+        if(SchoolConfirm(scname,_scpk_r)){
             uint64 id=CertificateExist(infohash);
-            if(id==0){
-                id=cfSize;cfSize++;
-            }
+            if(id==0)
+            {id=cfSize;cfSize++;}
             else{
                 if(StringhashCompareInternal(CfData[id].State,var3))
                 return (var3,id);
                 else if(now_<CfData[id].Date) return (var2,id);
-                {
-                    CfData[id].Date=now_;CfData[id].State=var3;return (var4,id);
-                }
+                {CfData[id].Date=now_;CfData[id].State=var3;return (var4,id);}
             }
             CfData[id].InfoHash=infohash;
             CfData[id].State=var3;
