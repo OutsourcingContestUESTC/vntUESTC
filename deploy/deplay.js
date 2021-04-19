@@ -1,5 +1,9 @@
 // geth --datadir data0 --networkid 10086 console --rpc --rpcport "8545" --allow-insecure-unlock --dev --dev.period 1
 // geth --datadir dataW --networkid 1108 console --rpc --rpcport "8545" --allow-insecure-unlock
+// sudo geth --datadir dataW --nodiscover --networkid 528 --ipcdisable --port 3333 --rpc --rpcport 8585 --rpcapi="db,eth,net,web3,personal" --allow-insecure-unlock --rpccorsdomain "*" console
+// sudo geth --datadir dataW --nodiscover --networkid 528 --ipcdisable --port 3333 --rpc --rpcport 8585 --rpcapi="db,eth,net,web3,personal" --allow-insecure-unlock --rpccorsdomain "*" console --http --http.corsdomain https://remix.ethereum.org
+
+
 //使用web3模块
 var Web3 = require('web3');
 
@@ -45,12 +49,12 @@ var cfContract = Contract.at(web3.eth.getTransactionReceipt(contractAddress))
 
 var tx = { from: account_0, gas: 300000 }
 
-var txHash = cfContract.SchoolRegister.sendTransaction("UESTC", schoolPk, { from: account_0, gas: 3000000 })
+var txHash = cfContract.SchoolRegister.sendTransaction("UESTC", schoolPk, { from: account_0, to: contractAddress, gas: 30000000 })
 
 
 web3.eth.getTransactionReceipt(txHash)
 
-var txHash = cfContract.CerticateVerification.sendTransaction(0, 'schoolPk', { from: account_0, gas: 3000000 })
+var txHash = cfContract.CerticateVerification.sendTransaction(0, 'schoolPk', { from: account_0, to: contractAddress, gas: 30000000 })
 
 
 var filter = web3.eth.filter("pending")
@@ -58,3 +62,6 @@ var filter = web3.eth.filter("pending")
 filter.watch(function(error, log) {
     console.log(log)
 });
+
+var txHash = cfContract.say.sendTransaction({ from: account_0, gas: 3000000 })
+cfContract.say.call()
