@@ -66,8 +66,7 @@ contract stucontract {
         return false;
     }
     
-    function SchoolConfirm (string memory schoolname,address ScPk) public returns (bool) {
-        ScPk=msg.sender;
+    function SchoolConfirm (string memory schoolname,address ScPk) internal returns (bool) {
         return addressCompareInternal(ScPkMap[schoolname],ScPk);
     }
 
@@ -79,13 +78,13 @@ contract stucontract {
         return 0;
     }
     
-    function SchoolExist(string memory schooln) public returns (bool) {
-        address _a=msg.sender;
+    function SchoolExist(string memory schooln) internal returns (bool) {
+        address _a;
         return addressCompareInternal(ScPkMap[schooln],_a);
     }
 
-    function SchoolRegister(string memory SchoolIn,address SchoolPk) public admin returns (bool) {       
-        
+    function SchoolRegister(string memory SchoolIn) public admin returns (bool) {       
+        address SchoolPk=msg.sender;
         if(SchoolExist(SchoolIn)){ 
             ScPkMap[SchoolIn]=SchoolPk;
             return true;}
@@ -121,7 +120,7 @@ contract stucontract {
 
     function RemokeFunc(string memory schoolname,uint64 _id,string memory _infohash,uint256 _now)  public returns (bool) {
         address _scpk;
-        _scpk=ScPkMap[schoolname];
+        _scpk=msg.sender;
         if(SchoolConfirm(schoolname,_scpk)){
             if(StringhashCompareInternal(CfData[_id].InfoHash,_infohash)){
                 CfData[_id].State=var2;
