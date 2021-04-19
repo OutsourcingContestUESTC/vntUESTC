@@ -25,7 +25,7 @@ contract stucontract {
     string var2="REMOKE";
     string var3="PASS" ;
     string var4="SUCCESS";
-    uint public time;
+
     mapping(string=>address) ScPkMap;
     uint64 cfSize=0;
 
