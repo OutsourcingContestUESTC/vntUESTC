@@ -9,24 +9,24 @@ contract stucontract {
         uint256 Date;
     }
     struct AdminStruct{
-
          string id  ;//ID
-
          string password ;//密码
-
     }
 
     mapping(uint64=>CfInfoHash) CfData;
     mapping(string=>uint64) CfData_r;
     mapping (address=>AdminStruct) adm;
+    mapping(string=>address) ScPkMap;
+
     address public owner;
+
     string var0="ERROR";
     string var1="REMOKE SUCCESS";
     string var2="REMOKE";
     string var3="PASS" ;
     string var4="SUCCESS";
 
-    mapping(string=>address) ScPkMap;
+    
     uint64 cfSize=0;
 
     event e(address addr,string message);
@@ -40,6 +40,7 @@ contract stucontract {
         adm[msg.sender].password="123456";
 
     }
+    
     modifier admin(){
         require(owner==msg.sender);
         _;
@@ -104,7 +105,7 @@ contract stucontract {
             else{
                 if(StringhashCompareInternal(CfData[id].State,var3))
                 return (var3,id);
-                else if(now<CfData[id].Date) return (var2,id);
+                else if(now_<CfData[id].Date) return (var2,id);
                 {
                     CfData[id].Date=now_;CfData[id].State=var3;return (var4,id);
                 }
