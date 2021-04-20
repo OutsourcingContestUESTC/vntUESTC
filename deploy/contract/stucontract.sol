@@ -78,7 +78,7 @@ contract stucontract {
         return addressCompareInternal(ScPkMap[schoolname], ScPk);
     }
 
-    function CertificateExist(string memory InfoH) public returns (uint64) {
+    function CertificateExist(string memory InfoH) internal returns (uint64) {
         if (StringhashCompareInternal(CfData[CfData_r[InfoH]].InfoHash, InfoH))
             return CfData_r[InfoH];
         else emit e(msg.sender, var0);
