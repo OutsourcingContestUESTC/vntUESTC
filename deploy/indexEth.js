@@ -80,8 +80,8 @@ const loadData = (path) => {
 }
 
 function cfVerification(cf) {
-    var th = cfContract.CerticateVerification.sendTransaction(cf.ID, web3.sha3(JSON.stringify(cf.info)), { from: publicPk, gas: 30000000 });
-    return get(th)[0]
+    var result = cfContract.CerticateVerification.call(cf.ID, web3.sha3(JSON.stringify(cf.info)), { from: publicPk, gas: 30000000 });
+    return result[0];
 }
 
 const storeData = (data, path) => {
