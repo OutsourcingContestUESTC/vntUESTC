@@ -1,0 +1,128 @@
+body { 
+  background-color:#F1F3F6;
+}
+
+.container{
+  width: 1366px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.roundRactangle1 {
+  border-radius: 35px;
+  background-color: rgb(241, 243, 246);
+  box-shadow: 0px 15px 35px 0px rgba(55, 84, 170, 0.2), -10.607px -10.607px 35px 0px rgba(255, 255, 255, 1);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 555px;
+  height: 374px;
+  z-index: 3;
+}
+
+  .roundRactangle1  p{
+    display: inline;
+    font-size: 25px;
+    font-family: "Microsoft YaHei";
+    color: rgb(117, 117, 117);
+    font-weight: bold;
+    line-height:39px;
+    text-align: left;
+    text-shadow: 0px 2px 3px rgba(54, 84, 170, 0.31),-1.414px -1.414px 3px rgba(255, 255, 255, 0.004);
+    -moz-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+    -webkit-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+    -ms-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+   
+    margin-left: 19px;
+    z-index: 9;
+  }
+  
+  .formTitle {
+    position: relative;
+    font-size: 50px;
+    font-family: "Microsoft YaHei";
+    color: rgb(117, 117, 117);
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    text-shadow: 0px 2px 4px rgba(54, 84, 170, 0.31),-1.414px -1.414px 4px rgba(255, 255, 255, 0.004);
+    -moz-transform: matrix( 0.49415206704218,0,0,0.49415205967874,0,0);
+    -webkit-transform: matrix( 0.49415206704218,0,0,0.49415205967874,0,0);
+    -ms-transform: matrix( 0.49415206704218,0,0,0.49415205967874,0,0);
+    
+    z-index: 6;
+  }
+
+  input{
+    height: 39px;
+    border: none;
+    background-color: rgb(241, 243, 246);
+    box-shadow: inset 0px 6px 12px 0px rgba(55, 84, 170, 0.2),inset -4.243px -4.243px 12px 0px rgba(255, 255, 255, 0.004);
+    border-radius: 20px;
+    width: 446px;
+    margin-left: 50px;
+    margin-top: 20px;
+  }
+  .roundRactangle2 {
+    position: relative;
+    background-color: rgb(241, 243, 246);
+    box-shadow: inset 0px 6px 12px 0px rgba(55, 84, 170, 0.2),inset -4.243px -4.243px 12px 0px rgba(255, 255, 255, 0.004);
+    margin-top: 52px;
+    margin-bottom: 7px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    width: 446px;
+    height: 39px;
+    z-index: 4;
+  }
+
+  .roundRactangle2>p{
+    font-size: 25px;
+    line-height:39px;
+    height: 39px;
+    text-align: center;
+    display: block;
+    
+  }
+
+
+  
+
+  button {
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(241, 243, 246);
+    box-shadow: 0px 7px 14px 0px rgba(54, 84, 170, 0.3),-4.95px -4.95px 14px 0px rgba(255, 255, 255, 0.004),inset 0px 12px 24px 0px rgba(55, 84, 170, 0.05),inset -8.485px -8.485px 24px 0px rgba(255, 255, 255, 0.6);
+    width: 444px;
+    height: 45px;
+    z-index: 7;
+    display: block;
+    margin: auto;
+    margin-top: 42px;
+   
+  }
+
+  button p{
+    font-size: 25px;
+    font-family: "Microsoft YaHei";
+    color: rgb(117, 117, 117);
+    font-weight: bold;
+    line-height: 42px;
+
+    text-align: center;
+    text-shadow: 0px 3px 7px rgba(54, 84, 170, 0.3),-2.121px -2.121px 7px rgba(255, 255, 255, 0.004);
+    width: 66px;
+    height: 42px;
+    margin-left: 0px;
+    z-index: 10;
+  }
+
+ 
+ 
+
+
+  

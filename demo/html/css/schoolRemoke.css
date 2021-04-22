@@ -1,0 +1,202 @@
+body { 
+  background-color:#F1F3F6;
+}
+
+.container{
+  width: 1366px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+  .roundRectangle1 {
+    border-radius: 35px;
+    background-color: rgb(241, 243, 246);
+    box-shadow: 0px 15px 35px 0px rgba(55, 84, 170, 0.2),-10.607px -10.607px 35px 0px rgba(255, 255, 255, 0.004);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 1073px;
+    height: 617px;
+    z-index: 3;
+  }
+
+  .formTitle {
+    position: relative;
+    margin-top: 31px;
+
+    font-size: 50px;
+    font-family: "Microsoft YaHei";
+    color: rgb(117, 117, 117);
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    text-shadow: 0px 2px 4px rgba(54, 84, 170, 0.31),-1.414px -1.414px 4px rgba(255, 255, 255, 0.004);
+    -moz-transform: matrix( 0.49415206704218,0,0,0.49415205967874,0,0);
+    -webkit-transform: matrix( 0.49415206704218,0,0,0.49415205967874,0,0);
+    -ms-transform: matrix( 0.49415206704218,0,0,0.49415205967874,0,0);
+    
+    z-index: 4;
+  }
+
+
+  
+  .information {
+    margin-left: 216px;
+    margin-top: 63px;
+    width: 780px;
+  }
+
+.line{
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+ 
+
+
+
+.roundRectangle2l {
+  background-color: rgb(241, 243, 246);
+  box-shadow: inset 0px 6px 12px 0px rgba(55, 84, 170, 0.2),inset -4.243px -4.243px 12px 0px rgba(255, 255, 255, 0.004);
+  border-radius: 16px;
+  width: 310px;
+  height: 38px;
+  margin-right: 50px;
+  
+}
+
+.roundRectangle2r {
+  background-color: rgb(241, 243, 246);
+  box-shadow: inset 0px 6px 12px 0px rgba(55, 84, 170, 0.2),inset -4.243px -4.243px 12px 0px rgba(255, 255, 255, 0.004);
+  border-radius: 16px;
+  width: 351px;
+  height: 38px;
+  
+  
+}
+
+.roundRectangle2l p{
+  font-size: 25px;
+  font-family: "Microsoft YaHei";
+  color: rgb(117, 117, 117);
+  font-weight: bold;
+  line-height: 38px;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: -15px;
+  text-shadow: 0px 2px 3px rgba(54, 84, 170, 0.31),-1.414px -1.414px 3px rgba(255, 255, 255, 0.004);
+  -moz-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+  -webkit-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+  -ms-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+}
+
+.roundRectangle2r p{
+  font-size: 25px;
+  font-family: "Microsoft YaHei";
+  color: rgb(117, 117, 117);
+  font-weight: bold;
+  line-height: 38px;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: -15px;
+  text-shadow: 0px 2px 3px rgba(54, 84, 170, 0.31),-1.414px -1.414px 3px rgba(255, 255, 255, 0.004);
+  -moz-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+  -webkit-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+  -ms-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+}
+
+  .roundRectangle3 {
+    background-color: rgb(241, 243, 246);
+    box-shadow: inset 0px 6px 12px 0px rgba(55, 84, 170, 0.2),inset -4.243px -4.243px 12px 0px rgba(255, 255, 255, 0.004);
+    border-radius: 16px;
+    width: 126px;
+    height: 38px;
+    
+    z-index: 8;
+  }
+
+  .roundRectangle3 p{
+    font-size: 25px;
+    font-family: "Microsoft YaHei";
+    color: rgb(117, 117, 117);
+    font-weight: bold;
+    line-height: 38px;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    
+    text-shadow: 0px 2px 3px rgba(54, 84, 170, 0.31),-1.414px -1.414px 3px rgba(255, 255, 255, 0.004);
+    -moz-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+    -webkit-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+    -ms-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+  }
+  
+
+  .lastLine>p{
+    font-size: 25px;
+    font-family: "Microsoft YaHei";
+    color: rgb(117, 117, 117);
+    font-weight: bold;
+    line-height: 38px;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    
+    text-shadow: 0px 2px 3px rgba(54, 84, 170, 0.31),-1.414px -1.414px 3px rgba(255, 255, 255, 0.004);
+    -moz-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+    -webkit-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+    -ms-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+    
+    display: inline-block;
+  }
+
+  
+
+
+  #remove {
+    border-radius: 10px;
+    background-color: rgb(241, 243, 246);
+    box-shadow: 0px 7px 14px 0px rgba(54, 84, 170, 0.3),-4.95px -4.95px 14px 0px rgba(255, 255, 255, 0.004),inset 0px 12px 24px 0px rgba(55, 84, 170, 0.05),inset -8.485px -8.485px 24px 0px rgba(255, 255, 255, 0.6);
+    border: none;
+    width: 128px;
+    height: 45px;
+    z-index: 27;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+  }
+ 
+ 
+
+  #remove p{
+    font-size: 25px;
+    font-family: "Microsoft YaHei";
+    color: rgb(117, 117, 117);
+    font-weight: bold;
+    line-height:  45px;
+    text-align: center;
+    text-shadow: 0px 3px 7px rgba(54, 84, 170, 0.3),-2.121px -2.121px 7px rgba(255, 255, 255, 0.004);
+    margin: 0;
+  }
+
+  
+  .removeSuccess {
+    font-size: 25px;
+    font-family: "Microsoft YaHei";
+    color: rgb(138, 167, 120);
+    font-weight: bold;
+    line-height: 2.4;
+    text-align: center;
+    text-shadow: 0px 2px 3px rgba(54, 84, 170, 0.31),-1.414px -1.414px 3px rgba(255, 255, 255, 0.004);
+    -moz-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+    -webkit-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+    -ms-transform: matrix( 0.80000001192093,0,0,0.8,0,0);
+    
+  }
+
+ 
+  

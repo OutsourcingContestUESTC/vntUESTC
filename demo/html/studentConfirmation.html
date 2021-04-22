@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生信息确认</title>
+    <meta name="description" content="基于区块链的学位学历认证管理系统">
+    <meta name="keywords" content="区块链 学位学历认证 文特链 学生信息确认">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="../html/css/normalize.css">
+    <link rel="stylesheet" href="../html/css/studentConfirmation.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="roundRectangle1">
+            <div class="formTitle">
+                证书信息确认
+
+            </div>
+            <div class="information">
+                <div class="line">
+                    <div class="roundRectangle2l" style="display: inline-block">
+                        <p>姓名
+                            <span style="margin-left: 8px;">|</span>
+                            <%=name%>
+                        </p>
+                    </div>
+                    <div class="roundRectangle2r " style="display: inline-block">
+                        <p>籍贯<span style="margin-left: 8px;">|</span>
+                            <%=from%>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="line">
+                    <div class="roundRectangle3" style="display: inline-block">
+                        <p>
+                            性别
+                            <span style="margin-left: 8px;">|</span>
+                            <%=sex%>
+                        </p>
+                    </div>
+                    <div class="roundRectangle3 " style="display: inline-block;width: 140px;margin-left: 40px;margin-right: 50px;">
+                        <p>民族
+                            <span style="margin-left: 8px;">|</span>
+                            <%=nationality%>
+                        </p>
+                    </div>
+                    <div class="roundRectangle2r " style="display: inline-block">
+                        <p>
+                            身份证号
+                            <span style="margin-left: 8px;">|</span>
+                            <%=IDNumber%>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="line">
+                    <div class="roundRectangle2l" style="display: inline-block">
+                        <p>
+                            学号
+                            <span style="margin-left: 8px;">|</span>
+                            <%=studentNumber%>
+                        </p>
+                    </div>
+                    <div class="roundRectangle2r " style="display: inline-block">
+                        <p>
+                            专业方向
+                            <span style="margin-left: 8px;">|</span>
+                            <%=major%>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="line">
+                    <div class="roundRectangle2l" style="display: inline-block">
+                        <p>
+                            学校
+                            <span style="margin-left: 8px;">|</span>
+                            <%=school%>
+                        </p>
+                    </div>
+                    <div class="roundRectangle2r " style="display: inline-block">
+                        <p>
+                            毕业证书
+                            <span style="margin-left: 8px;">|</span>
+                            <%=graduationCertificateNo%>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="submitSuccess" id="succeedregistering">
+
+                <!-- 注册成功，证书编号： -->
+
+
+            </div>
+            <button id="submit"><p>注册</p></button>
+
+            <a href="<%=studentConfirmationDownloadUrl%>&<%=uid%>&<%=p%>" download="学位证明.cf">
+                <button id="download">
+                    <p>
+                        下载
+                    </p>
+                </button>
+            </a>
+
+        </div>
+    </div>
+
+
+
+    <script src="js/banner.js"></script>
+    <script src="js/jquery.js"></script>
+    <!-- 从服务器获得数据 -->
+    <!-- 提交数据交服务器 -->
+    <script>
+        $(function() {
+            $('#submit').on('click', function() {
+                $.ajax({
+                    type: "post",
+                    url: "<%=studentConfirmationSendDataUrl%>" + "&<%=uid%>" + "&<%=p%>", //后端输入
+                    data: true,
+                    datatype: Boolean,
+                    success: function(msg) {
+
+                        if (msg.state == 200) {
+                            //说明传入完成
+                            $('#succeedregistering').show()
+                            let registeringSuccess = document.getElementById('succeedregistering');
+                            let registeringSuccessInfo = '<div class="submitSuccess" id="succeedregistering">' +
+                                ' 注册成功，证书编号：' +
+                                msg.no +
+                                ' </div>';
+
+                            registeringSuccess.innerHTML = registeringSuccessInfo;
+                        } else {
+                            //信息返回不为正常值200，返回"添加失败"+msg.message+"请重试"
+                            //alert("注册失败" + msg.message + "请重试");
+                            $('#succeedregistering').show()
+                            let registeringSuccess = document.getElementById('succeedregistering');
+                            let registeringSuccessInfo = '<div  class="submitSuccess" id="succeedregistering" style="color:#950000;">' +
+                                '注册失败，' + msg.message + '，请重试 </div>';
+
+                            registeringSuccess.innerHTML = registeringSuccessInfo;
+                        }
+
+                    },
+                    error: function(msg) {
+                        alert("注册失败，请重试");
+                        $('#succeedregistering').show()
+                        let registeringSuccess = document.getElementById('succeedregistering');
+                        let registeringSuccessInfo = '<div class="submitSuccess" id="succeedregistering" style="color:#950000;">' +
+                            '注册失败，请重试 </div>';
+                        registeringSuccess.innerHTML = registeringSuccessInfo;
+                    }
+                });
+
+            })
+
+        });
+    </script>
+
+</body>
+
+</html>
