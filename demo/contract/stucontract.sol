@@ -27,7 +27,7 @@ contract stucontract {
     string var4="SUCCESS";
 
     
-    uint64 cfSize=0;
+    uint64 cfSize=1;
 
     event e(address addr,string message);
 
